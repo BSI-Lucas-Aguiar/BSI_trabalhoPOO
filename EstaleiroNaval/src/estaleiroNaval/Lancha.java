@@ -5,6 +5,7 @@ public class Lancha extends Projeto{
 	private String nomeLancha;
 	private String potenciaMotor;
 	
+	//Criar o Super Construtor
 	public Lancha() {
 		// TODO Auto-generated constructor stub
 	}
