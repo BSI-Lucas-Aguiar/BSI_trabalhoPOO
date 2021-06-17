@@ -1,0 +1,13 @@
+CREATE DATABASE IF NOT EXISTS estaleiro_naval;
+
+USE estaleiro_naval;
+
+CREATE TABLE IF NOT EXISTS lancha(codigoProjeto varchar(255), quantidadeMaterial int, materialUtilizado int, vendido boolean, valorEmbarcacao float, nomeLancha varchar(255));
+
+CREATE TABLE IF NOT EXISTS estoque(estoqueMaterial int);
+
+CREATE TABLE IF NOT EXISTS compra(nomeMaterial varchar(255), precoMaterial float);
+
+CREATE TABLE IF NOT EXISTS caixa(totalCaixa float);
+
+CREATE TABLE IF NOT EXISTS funcionario(nome varchar(255), cargo varchar(255), projetoAtual varchar(255));
