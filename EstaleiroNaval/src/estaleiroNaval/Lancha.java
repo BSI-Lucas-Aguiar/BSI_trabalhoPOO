@@ -3,29 +3,24 @@ package estaleiroNaval;
 public class Lancha extends Projeto{
 	
 	private String nomeLancha;
-	private String potenciaMotor;
-	
-	//Criar o Super Construtor
-	public Lancha() {
-		// TODO Auto-generated constructor stub
+
+	public Lancha(String nomeLancha, String codigoProjeto, int quantidadeMaterial, int materialUtilizado, boolean vendido,
+			double valorEmbarcacao) {
+		super(codigoProjeto, quantidadeMaterial,  materialUtilizado, vendido, valorEmbarcacao);
+		this.nomeLancha=nomeLancha;
 	}
 
-	//Sets e Gets
+	public void listarProjetos() {
+		//Implementar
+	}
 	
+	//Sets e Gets
 	public String getNomeLancha() {
 		return nomeLancha;
 	}
 
 	public void setNomeLancha(String nomeLancha) {
 		this.nomeLancha = nomeLancha;
-	}
-
-	public String getPotenciaMotor() {
-		return potenciaMotor;
-	}
-
-	public void setPotenciaMotor(String potenciaMotor) {
-		this.potenciaMotor = potenciaMotor;
 	}
 
 }

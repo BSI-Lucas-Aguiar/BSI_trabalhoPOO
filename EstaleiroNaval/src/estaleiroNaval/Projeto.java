@@ -2,81 +2,38 @@ package estaleiroNaval;
 
 public abstract class Projeto {
 	
-	private String codigoProjeto;
-	private int quantidadeFerro;
-	private int ferroUtilizado;
-	private int quantidadeMaquinario;
-	private int maquinarioUtilizado;
-	private int quantidadeEletronicos;
-	private int eletronicosUtilizados;
-	private int quantidadeMadeira;
-	private int madeiraUtilizada;
-	private boolean vendido;
-	private double valorEmbarcaçao;
+	protected String codigoProjeto;
+	protected int quantidadeMaterial;
+	protected int materialUtilizado;
+	protected boolean vendido;
+	protected double valorEmbarcacao;
 	
-	public Projeto() {
-		
-	}
-	
-	public void listarProjetos() {
-		
+	public Projeto(String codigoProjeto, int quantidadeMaterial, int materialUtilizado, boolean vendido, double valorEmbarcacao) {
+		this.codigoProjeto = codigoProjeto;
+		this.quantidadeMaterial = quantidadeMaterial;
+		this.materialUtilizado = materialUtilizado;
+		this.vendido = vendido;
+		this.valorEmbarcacao = valorEmbarcacao;
 	}
 	
 	//Sets e Gets
-	
 	public String getCodigoProjeto() {
 		return codigoProjeto;
 	}
 	public void setCodigoProjeto(String codigoProjeto) {
 		this.codigoProjeto = codigoProjeto;
 	}
-	public int getQuantidadeFerro() {
-		return quantidadeFerro;
+	public int getQuantidadeMaterial() {
+		return quantidadeMaterial;
 	}
-	public void setQuantidadeFerro(int quantidadeFerro) {
-		this.quantidadeFerro = quantidadeFerro;
+	public void setQuantidadeMaterial(int quantidadeMaterial) {
+		this.quantidadeMaterial = quantidadeMaterial;
 	}
-	public int getFerroUtilizado() {
-		return ferroUtilizado;
+	public int getMaterialUtilizado() {
+		return materialUtilizado;
 	}
-	public void setFerroUtilizado(int ferroUtilizado) {
-		this.ferroUtilizado = ferroUtilizado;
-	}
-	public int getQuantidadeMaquinario() {
-		return quantidadeMaquinario;
-	}
-	public void setQuantidadeMaquinario(int quantidadeMaquinario) {
-		this.quantidadeMaquinario = quantidadeMaquinario;
-	}
-	public int getMaquinarioUtilizado() {
-		return maquinarioUtilizado;
-	}
-	public void setMaquinarioUtilizado(int maquinarioUtilizado) {
-		this.maquinarioUtilizado = maquinarioUtilizado;
-	}
-	public int getQuantidadeEletronicos() {
-		return quantidadeEletronicos;
-	}
-	public void setQuantidadeEletronicos(int quantidadeEletronicos) {
-		this.quantidadeEletronicos = quantidadeEletronicos;
-	}
-	public int getEletronicosUtilizados() {
-		return eletronicosUtilizados;
-	}
-	public void setEletronicosUtilizados(int eletronicosUtilizados) {
-		this.eletronicosUtilizados = eletronicosUtilizados;
-	}
-	public int getQuantidadeMadeira() {
-		return quantidadeMadeira;
-	}
-	public void setQuantidadeMadeira(int quantidadeMadeira) {
-		this.quantidadeMadeira = quantidadeMadeira;
-	}
-	public int getMadeiraUtilizada() {
-		return madeiraUtilizada;
-	}
-	public void setMadeiraUtilizada(int madeiraUtilizada) {
-		this.madeiraUtilizada = madeiraUtilizada;
+	public void setMaterialUtilizado(int materialUtilizado) {
+		this.materialUtilizado = materialUtilizado;
 	}
 	public boolean isVendido() {
 		return vendido;
@@ -84,12 +41,13 @@ public abstract class Projeto {
 	public void setVendido(boolean vendido) {
 		this.vendido = vendido;
 	}
-	public double getValorEmbarcaçao() {
-		return valorEmbarcaçao;
+	public double getValorEmbarcacao() {
+		return valorEmbarcacao;
 	}
-	public void setValorEmbarcaçao(double valorEmbarcaçao) {
-		this.valorEmbarcaçao = valorEmbarcaçao;
+	public void setValorEmbarcacao(double valorEmbarcacao) {
+		this.valorEmbarcacao = valorEmbarcacao;
 	}
+	
 	
 	
 }

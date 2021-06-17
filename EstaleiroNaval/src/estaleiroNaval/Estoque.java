@@ -1,45 +1,23 @@
 package estaleiroNaval;
 
 public class Estoque {
-	private int estoqueFerro;
-	private int estoqueMaquinario;
-	private int estoqueEletronicos;
-	private int estoqueMadeira;
+	private int estoqueMaterial;
 	
 	public void listarEstoque() {
-		
+		//Implementar
 	}
 	
 	public void retirarMaterial() {
-		
+		//Implementar
 	}
+
 	
 	//Sets e Gets
-	
-	public int getEstoqueFerro() {
-		return estoqueFerro;
+	public int getEstoqueMaterial() {
+		return estoqueMaterial;
 	}
-	public void setEstoqueFerro(int estoqueFerro) {
-		this.estoqueFerro = estoqueFerro;
+
+	public void setEstoqueMaterial(int estoqueMaterial) {
+		this.estoqueMaterial = estoqueMaterial;
 	}
-	public int getEstoqueMaquinario() {
-		return estoqueMaquinario;
-	}
-	public void setEstoqueMaquinario(int estoqueMaquinario) {
-		this.estoqueMaquinario = estoqueMaquinario;
-	}
-	public int getEstoqueEletronicos() {
-		return estoqueEletronicos;
-	}
-	public void setEstoqueEletronicos(int estoqueEletronicos) {
-		this.estoqueEletronicos = estoqueEletronicos;
-	}
-	public int getEstoqueMadeira() {
-		return estoqueMadeira;
-	}
-	public void setEstoqueMadeira(int estoqueMadeira) {
-		this.estoqueMadeira = estoqueMadeira;
-	}
-	
-	
 }
