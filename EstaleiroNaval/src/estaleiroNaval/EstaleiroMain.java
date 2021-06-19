@@ -1,7 +1,8 @@
 package estaleiroNaval;
 import java.sql.SQLException;
-
 import persistencia.CriarBD;
+import telas.TelaPrincipal;
+
 
 public class EstaleiroMain {
 
@@ -10,9 +11,9 @@ public class EstaleiroMain {
 		
 		CriarBD.iniciarBD();
 		
+		new TelaPrincipal();
 		
-		
-
+		System.out.println("Aplicação Finalizada!");
 	}
 
 }

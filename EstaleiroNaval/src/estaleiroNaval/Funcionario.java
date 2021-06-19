@@ -12,7 +12,21 @@ public class Funcionario {
 		this.projetoAtual = projetoAtual;
 	}
 	
+	public void cadastrarFuncionario() {
+		//Implementar
+	}
 	
+	public void demitirFuncionario() {
+		//Implementar
+	}
+	
+	public void listarFuncionario() {
+		//Implementar
+	}
+	
+	public void alterarProjeto() {
+		//Implementar
+	}
 	
 	//Sets e Gets
 	public String getNome() {

@@ -16,6 +16,10 @@ public abstract class Projeto {
 		this.valorEmbarcacao = valorEmbarcacao;
 	}
 	
+	public void listarProjetos() {
+		//Implementar
+	}
+	
 	//Sets e Gets
 	public String getCodigoProjeto() {
 		return codigoProjeto;

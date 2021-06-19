@@ -19,22 +19,22 @@ public class CriarBD {
 		
 		Statement criarBD = conexao.createStatement();
 		//Criar o Banco de Dados
-		criarBD.execute("CREATE DATABASE IF NOT EXISTS estaleiro_naval");
+		criarBD.execute("CREATE DATABASE IF NOT EXISTS estaleiro_naval;");
 		System.out.println("Banco de Dados estaleiro_naval Criado.");
 		//Utilizar o Banco de dados
-		criarBD.execute("USE estaleiro_naval");
+		criarBD.execute("USE estaleiro_naval;");
 		System.out.println("Utilizando estaleiro_Naval...");
 		//Criar tabela lancha
-		criarBD.execute("CREATE TABLE IF NOT EXISTS lancha(codigoProjeto varchar(255), quantidadeMaterial int, materialUtilizado int, vendido boolean, valorEmbarcacao float, nomeLancha varchar(255));");
+		criarBD.execute("CREATE TABLE IF NOT EXISTS lancha(codigoProjeto varchar(255), quantidadeMaterial int, materialUtilizado int, vendido boolean, valorEmbarcacao double, nomeLancha varchar(255));");
 		System.out.println("Tabela lancha criada!");
 		//Criar tabela estoque
 		criarBD.execute("CREATE TABLE IF NOT EXISTS estoque(estoqueMaterial int);");
 		System.out.println("Tabela estoque criada!");
 		//Criar tabela compra
-		criarBD.execute("CREATE TABLE IF NOT EXISTS compra(nomeMaterial varchar(255), precoMaterial float);");
+		criarBD.execute("CREATE TABLE IF NOT EXISTS compra(nomeMaterial varchar(255), precoMaterial double);");
 		System.out.println("Tabela compra criada!");
 		//Criar tabela caixa
-		criarBD.execute("CREATE TABLE IF NOT EXISTS caixa(totalCaixa float);");
+		criarBD.execute("CREATE TABLE IF NOT EXISTS caixa(totalCaixa double);");
 		System.out.println("Tabela caixa criada!");
 		//Criar tabela funcionarios
 		criarBD.execute("CREATE TABLE IF NOT EXISTS funcionario(nome varchar(255), cargo varchar(255), projetoAtual varchar(255));");
