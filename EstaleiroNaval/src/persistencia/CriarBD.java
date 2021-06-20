@@ -8,9 +8,10 @@ import java.sql.Statement;
 public class CriarBD {
 
 	public static void iniciarBD() throws SQLException {
-		final String url = "jdbc:mysql://localhost:3306";
-		final String usuario = "root"; 
-		final String senha = "1234"; //Utilize sua senha root do MySQL aqui para rodar a criação do BD
+		//Altere os dados do SQL na Classe DadosMYSQL no pacote Persistencia
+		String url = DadosMYSQL.getUrl();
+		String usuario = DadosMYSQL.getUsuario(); 
+		String senha = DadosMYSQL.getSenha(); 
 		
 		Connection conexao = DriverManager
 				.getConnection(url, usuario, senha);
@@ -28,13 +29,15 @@ public class CriarBD {
 		criarBD.execute("CREATE TABLE IF NOT EXISTS lancha(codigoProjeto varchar(255), quantidadeMaterial int, materialUtilizado int, vendido boolean, valorEmbarcacao double, nomeLancha varchar(255));");
 		System.out.println("Tabela lancha criada!");
 		//Criar tabela estoque
-		criarBD.execute("CREATE TABLE IF NOT EXISTS estoque(estoqueMaterial int);");
+		criarBD.execute("CREATE TABLE IF NOT EXISTS estoque(idEstoque int, estoqueMaterial int, UNIQUE INDEX estoque_unico (`idEstoque` ASC));");
+		criarBD.execute("INSERT IGNORE INTO estoque(idEstoque, estoqueMaterial) VALUES(1, 0);");
 		System.out.println("Tabela estoque criada!");
 		//Criar tabela compra
 		criarBD.execute("CREATE TABLE IF NOT EXISTS compra(nomeMaterial varchar(255), precoMaterial double);");
 		System.out.println("Tabela compra criada!");
 		//Criar tabela caixa
-		criarBD.execute("CREATE TABLE IF NOT EXISTS caixa(totalCaixa double);");
+		criarBD.execute("CREATE TABLE IF NOT EXISTS caixa(idCaixa int, totalCaixa double, UNIQUE INDEX caixa_unico (`idCaixa` ASC));");
+		criarBD.execute("INSERT IGNORE INTO caixa(idCaixa, totalCaixa) VALUES(1, 0);");
 		System.out.println("Tabela caixa criada!");
 		//Criar tabela funcionarios
 		criarBD.execute("CREATE TABLE IF NOT EXISTS funcionario(nome varchar(255), cargo varchar(255), projetoAtual varchar(255));");

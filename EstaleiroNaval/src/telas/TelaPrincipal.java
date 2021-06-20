@@ -7,8 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import persistencia.CriarBD;
-
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -28,10 +26,7 @@ public class TelaPrincipal extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					//Chamada da criação do BD, a senha root deve ser alterada na classe criarBD do pacote persistencia
-					CriarBD.iniciarBD();
-					
+				try {					
 					TelaPrincipal frame = new TelaPrincipal();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -65,6 +60,9 @@ public class TelaPrincipal extends JFrame {
 		JMenuItem menuProjetosListarProjetos = new JMenuItem("Listar Projetos");
 		menuProjetos.add(menuProjetosListarProjetos);
 		
+		JMenuItem menuProjetosVenderProjeto = new JMenuItem("Vender Projeto");
+		menuProjetos.add(menuProjetosVenderProjeto);
+		
 		JMenu menuFuncionarios = new JMenu("Funcion\u00E1rios");
 		menuBar.add(menuFuncionarios);
 		
@@ -83,7 +81,7 @@ public class TelaPrincipal extends JFrame {
 		JMenu menuEstoque = new JMenu("Estoque");
 		menuBar.add(menuEstoque);
 		
-		//Abrir Listar Estoque Menu
+		//Abrir Menu Manipular Estoque 
 		JMenuItem menuEstoqueManipularEstoque = new JMenuItem("Manipular Estoque");
 		menuEstoqueManipularEstoque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -105,10 +103,15 @@ public class TelaPrincipal extends JFrame {
 		JMenu menuCaixa = new JMenu("Caixa");
 		menuBar.add(menuCaixa);
 		
-		JMenuItem menuCaixaVenderProjeto = new JMenuItem("Vender Projeto");
-		menuCaixa.add(menuCaixaVenderProjeto);
-		
+		//Janela do caixa
+		//********************************************************************************************************
 		JMenuItem menuCaixaTotalCaixa = new JMenuItem("Total em Caixa");
+		menuCaixaTotalCaixa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaCaixa telaCaixa = new TelaCaixa();
+				telaCaixa.setVisible(true);
+			}
+		});
 		menuCaixa.add(menuCaixaTotalCaixa);
 		
 		//Janela de Conteúdo
@@ -122,16 +125,16 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(painel, BorderLayout.CENTER);
 		painel.setLayout(null);
 		
-		JLabel labelMain = new JLabel("Estaleiro Naval");
-		labelMain.setForeground(Color.BLACK);
+		JLabel labelMain = new JLabel("ESTALEIRO NAVAL");
+		labelMain.setForeground(new Color(255, 0, 255));
 		labelMain.setFont(new Font("Verdana", Font.BOLD, 50));
-		labelMain.setBounds(183, 65, 421, 49);
+		labelMain.setBounds(124, 29, 532, 49);
 		painel.add(labelMain);
 		
 		JLabel labelCriador = new JLabel("Criado por: @lucassendrak");
 		labelCriador.setForeground(Color.RED);
 		labelCriador.setFont(new Font("Unispace", Font.BOLD, 30));
-		labelCriador.setBounds(0, 502, 458, 37);
+		labelCriador.setBounds(0, 502, 459, 37);
 		painel.add(labelCriador);
 		
 		//Imagem de Fundo
