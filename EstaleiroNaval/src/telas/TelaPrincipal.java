@@ -66,17 +66,14 @@ public class TelaPrincipal extends JFrame {
 		JMenu menuFuncionarios = new JMenu("Funcion\u00E1rios");
 		menuBar.add(menuFuncionarios);
 		
-		JMenuItem menuFuncionariosCadastrarFuncionarios = new JMenuItem("Cadastrar Funcion\u00E1rio");
-		menuFuncionarios.add(menuFuncionariosCadastrarFuncionarios);
-		
-		JMenuItem menuFuncionariosDemitirFuncionario = new JMenuItem("Demitir Funcion\u00E1rio");
-		menuFuncionarios.add(menuFuncionariosDemitirFuncionario);
-		
-		JMenuItem menuFuncionariosListarFuncionarios = new JMenuItem("Listar Funcion\u00E1rios");
-		menuFuncionarios.add(menuFuncionariosListarFuncionarios);
-		
-		JMenuItem menuFuncionariosAlterarProjeto = new JMenuItem("Alterar Projeto");
-		menuFuncionarios.add(menuFuncionariosAlterarProjeto);
+		JMenuItem menuFuncionariosManipularFuncionários = new JMenuItem("Manipular Funcion\u00E1rios");
+		menuFuncionariosManipularFuncionários.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaFuncionarios telaFuncionarios = new TelaFuncionarios();
+				telaFuncionarios.setVisible(true);
+			}
+		});
+		menuFuncionarios.add(menuFuncionariosManipularFuncionários);
 		
 		JMenu menuEstoque = new JMenu("Estoque");
 		menuBar.add(menuEstoque);
@@ -131,7 +128,7 @@ public class TelaPrincipal extends JFrame {
 		labelMain.setBounds(124, 29, 532, 49);
 		painel.add(labelMain);
 		
-		JLabel labelCriador = new JLabel("Criado por: @lucassendrak");
+		JLabel labelCriador = new JLabel("CRIADO POR: @LUCASSENDRAK");
 		labelCriador.setForeground(Color.RED);
 		labelCriador.setFont(new Font("Unispace", Font.BOLD, 30));
 		labelCriador.setBounds(0, 502, 459, 37);

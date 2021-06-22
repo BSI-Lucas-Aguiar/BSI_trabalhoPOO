@@ -1,7 +1,6 @@
 package persistencia;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -9,14 +8,8 @@ public class CriarBD {
 
 	public static void iniciarBD() throws SQLException {
 		//Altere os dados do SQL na Classe DadosMYSQL no pacote Persistencia
-		String url = DadosMYSQL.getUrl();
-		String usuario = DadosMYSQL.getUsuario(); 
-		String senha = DadosMYSQL.getSenha(); 
-		
-		Connection conexao = DriverManager
-				.getConnection(url, usuario, senha);
-		
-		System.out.println("Conexão efetuada com sucesso!");
+		//Função criada para toda movimentação com banco de dados, lembrar de colocar o close ao fim de cada uma
+		Connection conexao = FabricaConexao.getConexao();
 		
 		Statement criarBD = conexao.createStatement();
 		//Criar o Banco de Dados
