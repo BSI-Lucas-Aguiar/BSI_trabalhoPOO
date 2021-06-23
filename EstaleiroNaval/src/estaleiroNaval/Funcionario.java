@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import persistencia.FabricaConexao;
 
 public class Funcionario {
@@ -14,6 +16,7 @@ public class Funcionario {
 	private String projetoAtual;
 	
 	//Retorno para a lista de funcionários na tela Funcionários
+	//********************************************************************************************************
 	public ArrayList<Funcionario> listarFuncionario(){
 		
 		try {
@@ -51,6 +54,8 @@ public class Funcionario {
 		return null;
 	}
 	
+	//Realizando a remoção do funcionário do BD
+	//********************************************************************************************************
 	public void demitirFuncionario() {
 		try {
 			Connection conexao = FabricaConexao.getConexao();
@@ -70,18 +75,21 @@ public class Funcionario {
 	}
 	
 	public void cadastrarFuncionario() {
-		//Sendo feito na classe da tela
+		//Sendo feito na classe da tela, possível alteração futura
 	}
 	
+	//Sendo utilizado para alterar os dados, com exceção 
+	//********************************************************************************************************
 	public void alterarDados() {
 		try {
 			Connection conexao = FabricaConexao.getConexao();
-			Statement demitirFun = conexao.createStatement();
+			Statement alterarFun = conexao.createStatement();
 			System.out.println("Conexão com o BD realizada para alteração realizada!");
 			
-			demitirFun.execute("USE estaleiro_naval;");
-			demitirFun.execute("UPDATE funcionario SET cargo ='"+this.getCargo()+"', projetoAtual = '"+this.getProjetoAtual()+"' WHERE nome = '" +this.getNome()+"'");
+			alterarFun.execute("USE estaleiro_naval;");
+			alterarFun.execute("UPDATE funcionario SET cargo ='"+this.getCargo()+"', projetoAtual = '"+this.getProjetoAtual()+"' WHERE nome = '" +this.getNome()+"'");
 			
+			JOptionPane.showMessageDialog(null, "Dados do funcionário "+this.getNome()+" alterados!");
 			conexao.close();
 			System.out.println("Conexão para alteração finalizada!");
 			

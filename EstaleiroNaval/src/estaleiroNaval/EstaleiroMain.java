@@ -5,6 +5,14 @@ import java.sql.SQLException;
 import persistencia.CriarBD;
 import telas.TelaPrincipal;
 
+/*
+ * Esta é a classe main que deve ser executada no início do programa;
+ * Não se esqueça de alterar na FabricaConexao os dados de conexão no MYSQL;
+ * As classes atualmente implementadas e funcionais com persistencia são Funcionarios e Compra;
+ * Nenhuma das imagens utilizadas é de minha posse;
+ * Caso vá utilizar parcialmente ou totalmente meus códigos pelo menos me dê um follow no instagram @lucassendrak
+ */
+
 
 public class EstaleiroMain {
 

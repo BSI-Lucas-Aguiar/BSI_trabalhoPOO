@@ -15,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -23,6 +22,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class TelaFuncionarios extends JFrame {
@@ -32,9 +32,8 @@ public class TelaFuncionarios extends JFrame {
 	private JTextField textoCargo;
 	private JTextField textoProjeto;
 
-	/**
-	 * Launch the application.
-	 */
+	//Iniciar a Tela
+	//********************************************************************************************************
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -48,10 +47,8 @@ public class TelaFuncionarios extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public TelaFuncionarios() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaFuncionarios.class.getResource("/imagens/icone_estaleiro.png")));
 		setTitle("Funcion\u00E1rios do Estaleiro");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
@@ -72,19 +69,19 @@ public class TelaFuncionarios extends JFrame {
 		textAreaFuncionarios.setBounds(10, 54, 243, 396);
 		panel.add(textAreaFuncionarios);
 		
+		//Função de Listar os Funcionários
+		//********************************************************************************************************
 		JButton botaoListarFuncionarios = new JButton("Listar Funcion\u00E1rios");		
 		botaoListarFuncionarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Chamada da listagem de funcionários
 				try {
-	                //Conexão da fábrica
+	                //Conexão da FabricaConexao
 					Connection conexao = FabricaConexao.getConexao();
 					System.out.println("Conexão com o BD para listar funcionários!");
 
 	                Funcionario funcionario = new Funcionario();
 
-
-	                //Pega os funcionário lá
+	                //Pega os funcionários do BD e forma uma arraylist
 	                ArrayList<Funcionario> listaFuncionario = funcionario.listarFuncionario();
 
 	                if(listaFuncionario != null) {
@@ -94,7 +91,8 @@ public class TelaFuncionarios extends JFrame {
 
 	                    }
 	                }
-
+	                
+	                JOptionPane.showMessageDialog(null, "Lista de Funcionários Atualizada!");
 	                conexao.close();
 	                System.out.println("Conexão para listar funcionários finalizada!");
 
@@ -141,7 +139,8 @@ public class TelaFuncionarios extends JFrame {
 		labelProjeto.setBounds(433, 154, 46, 14);
 		panel.add(labelProjeto);
 		
-		//Botão cadastrar Funcionário
+		//Botão Cadastrar Funcionário
+		//********************************************************************************************************
 		JButton botaoCadastrarFuncionario = new JButton("Cadastrar Funcion\u00E1rio");
 		botaoCadastrarFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -157,6 +156,8 @@ public class TelaFuncionarios extends JFrame {
 					conexao.close();
 					System.out.println("Conexão para cadastro finalizada!");
 					
+					JOptionPane.showMessageDialog(null, "Funcionário cadastrado!");
+					
 				} catch (Exception e1) {
 					
 					e1.printStackTrace();
@@ -164,10 +165,11 @@ public class TelaFuncionarios extends JFrame {
 				
 			}
 		});
-		botaoCadastrarFuncionario.setBounds(276, 250, 168, 23);
+		botaoCadastrarFuncionario.setBounds(372, 250, 168, 23);
 		panel.add(botaoCadastrarFuncionario);
 		
-		//Botão demitir funcionário
+		//Botão Demitir Funcionário
+		//********************************************************************************************************
 		JButton botaoDemitirFuncionario = new JButton("Demitir Funcion\u00E1rio");
 		botaoDemitirFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -178,12 +180,15 @@ public class TelaFuncionarios extends JFrame {
 				demissao.setProjetoAtual(textoProjeto.getText());
 				
 				demissao.demitirFuncionario();
+				
+				JOptionPane.showMessageDialog(null, "Funcionário demitido!");
 			}
 		});
-		botaoDemitirFuncionario.setBounds(276, 309, 168, 23);
+		botaoDemitirFuncionario.setBounds(372, 348, 168, 23);
 		panel.add(botaoDemitirFuncionario);
 		
-		//Botão alterar Dados
+		//Botão Alterar Dados
+		//********************************************************************************************************
 		JButton botaoAlterarDados = new JButton("Alterar Dados");
 		botaoAlterarDados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -194,9 +199,10 @@ public class TelaFuncionarios extends JFrame {
 				alterar.setProjetoAtual(textoProjeto.getText());
 				
 				alterar.alterarDados();
+				
 			}
 		});
-		botaoAlterarDados.setBounds(510, 250, 126, 23);
+		botaoAlterarDados.setBounds(372, 298, 168, 23);
 		panel.add(botaoAlterarDados);
 	}
 }

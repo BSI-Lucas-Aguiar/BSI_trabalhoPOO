@@ -21,9 +21,6 @@ public class TelaEstoque extends JFrame {
 	private JPanel contentPane;
 	private JTextField textoRetirarMaterial;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -37,9 +34,6 @@ public class TelaEstoque extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public TelaEstoque() {
 		setTitle("Estoque de Materiais");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaEstoque.class.getResource("/imagens/icone_estaleiro.png")));
@@ -65,6 +59,8 @@ public class TelaEstoque extends JFrame {
 		textoRetirarMaterial.setBounds(57, 295, 185, 25);
 		panel.add(textoRetirarMaterial);
 		
+		//Botão Retirar material
+		//********************************************************************************************************
 		JButton botaoRetirarMaterial = new JButton("Retirar Material");
 		botaoRetirarMaterial.setBounds(358, 282, 160, 55);
 		panel.add(botaoRetirarMaterial);

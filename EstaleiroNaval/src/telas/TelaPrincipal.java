@@ -18,6 +18,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
+//Iniciar a Tela
+//********************************************************************************************************
 @SuppressWarnings("serial")
 public class TelaPrincipal extends JFrame {
 
@@ -39,7 +41,7 @@ public class TelaPrincipal extends JFrame {
 	
 	public TelaPrincipal() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaPrincipal.class.getResource("/imagens/icone_estaleiro.png")));
-		setTitle("Estaleiro Naval");
+		setTitle("Gerenciamento de Estaleiro Naval");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		setResizable(false);
@@ -54,14 +56,8 @@ public class TelaPrincipal extends JFrame {
 		JMenu menuProjetos = new JMenu("Projetos");
 		menuBar.add(menuProjetos);
 		
-		JMenuItem menuProjetosCriarProjeto = new JMenuItem("Criar Projeto");
-		menuProjetos.add(menuProjetosCriarProjeto);
-		
-		JMenuItem menuProjetosListarProjetos = new JMenuItem("Listar Projetos");
-		menuProjetos.add(menuProjetosListarProjetos);
-		
-		JMenuItem menuProjetosVenderProjeto = new JMenuItem("Vender Projeto");
-		menuProjetos.add(menuProjetosVenderProjeto);
+		JMenuItem menuProjetosManipularProjeto = new JMenuItem("Manipular Projetos(N\u00E3o Implementado)");
+		menuProjetos.add(menuProjetosManipularProjeto);
 		
 		JMenu menuFuncionarios = new JMenu("Funcion\u00E1rios");
 		menuBar.add(menuFuncionarios);
@@ -78,7 +74,8 @@ public class TelaPrincipal extends JFrame {
 		JMenu menuEstoque = new JMenu("Estoque");
 		menuBar.add(menuEstoque);
 		
-		//Abrir Menu Manipular Estoque 
+		//Janela de Estoque
+		//********************************************************************************************************
 		JMenuItem menuEstoqueManipularEstoque = new JMenuItem("Manipular Estoque");
 		menuEstoqueManipularEstoque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -91,7 +88,15 @@ public class TelaPrincipal extends JFrame {
 		JMenu menuCompra = new JMenu("Compra");
 		menuBar.add(menuCompra);
 		
+		//Janela de Compra
+		//********************************************************************************************************
 		JMenuItem menuCompraManipularCompras = new JMenuItem("Manipular Compras");
+		menuCompraManipularCompras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaCompras telaCompras = new TelaCompras();
+				telaCompras.setVisible(true);
+			}
+		});
 		menuCompra.add(menuCompraManipularCompras);
 		
 		JMenu menuCaixa = new JMenu("Caixa");
@@ -120,11 +125,14 @@ public class TelaPrincipal extends JFrame {
 		painel.setLayout(null);
 		
 		JLabel labelMain = new JLabel("ESTALEIRO NAVAL");
-		labelMain.setForeground(new Color(255, 0, 255));
+		labelMain.setBackground(new Color(0, 0, 0));
+		labelMain.setForeground(new Color(0, 51, 102));
 		labelMain.setFont(new Font("Verdana", Font.BOLD, 50));
 		labelMain.setBounds(124, 29, 532, 49);
 		painel.add(labelMain);
 		
+		//Label com meu instagram
+		//********************************************************************************************************
 		JLabel labelCriador = new JLabel("CRIADO POR: @LUCASSENDRAK");
 		labelCriador.setForeground(Color.RED);
 		labelCriador.setFont(new Font("Unispace", Font.BOLD, 30));
