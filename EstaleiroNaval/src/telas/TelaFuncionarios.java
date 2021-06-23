@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class TelaFuncionarios extends JFrame {
 
 	private JPanel contentPane;
@@ -66,14 +67,49 @@ public class TelaFuncionarios extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JButton botaoListarFuncionarios = new JButton("Listar Funcion\u00E1rios");		
-		botaoListarFuncionarios.setBounds(47, 11, 162, 23);
-		panel.add(botaoListarFuncionarios);
-		
 		JTextArea textAreaFuncionarios = new JTextArea();
 		textAreaFuncionarios.setEditable(false);
 		textAreaFuncionarios.setBounds(10, 54, 243, 396);
 		panel.add(textAreaFuncionarios);
+		
+		JButton botaoListarFuncionarios = new JButton("Listar Funcion\u00E1rios");		
+		botaoListarFuncionarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Chamada da listagem de funcionários
+				try {
+	                //Conexão da fábrica
+					Connection conexao = FabricaConexao.getConexao();
+					System.out.println("Conexão com o BD para listar funcionários!");
+
+	                Funcionario funcionario = new Funcionario();
+
+
+	                //Pega os funcionário lá
+	                ArrayList<Funcionario> listaFuncionario = funcionario.listarFuncionario();
+
+	                if(listaFuncionario != null) {
+	                	textAreaFuncionarios.setText("");
+	                    for(Funcionario f: listaFuncionario) {
+	                    	textAreaFuncionarios.setText(textAreaFuncionarios.getText()+ f.getNome()+" | "+ f.getCargo()+" | "+f.getProjetoAtual()+"\n");
+
+	                    }
+	                }
+
+	                conexao.close();
+	                System.out.println("Conexão para listar funcionários finalizada!");
+
+	            }
+	            catch (SQLException ex) {
+	                System.err.println("Erro na conexão do BD: "+ex.getMessage());
+	            }
+	            catch (Exception ex) {
+	                System.err.println("Erro geral: "+ex.getMessage());
+	            }
+			}
+		});
+		botaoListarFuncionarios.setBounds(47, 11, 162, 23);
+		panel.add(botaoListarFuncionarios);
+		
 		
 		textoNome = new JTextField();
 		textoNome.setBounds(276, 56, 360, 20);
@@ -105,6 +141,7 @@ public class TelaFuncionarios extends JFrame {
 		labelProjeto.setBounds(433, 154, 46, 14);
 		panel.add(labelProjeto);
 		
+		//Botão cadastrar Funcionário
 		JButton botaoCadastrarFuncionario = new JButton("Cadastrar Funcion\u00E1rio");
 		botaoCadastrarFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
