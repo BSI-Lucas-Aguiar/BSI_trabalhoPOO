@@ -4,7 +4,6 @@ Estaleiro Naval – Lucas de Figueiredo Aguiar
 1 – Contexto do Sistema
 
 O intuito do projeto é criar um software para o gerenciamento de construção e venda de embarcações navais, contendo estoque de materiais, funcionários, embarcações e parte financeira, proporcionando um controle sobre a operação e suas vendas.
-
 	A ideia original do trabalho era um projeto maior e mais complexo, englobando variáveis mais variáveis e maior detalhamento, que foi reduzido para se adequar ao tamanho do trabalho proposto. O projeto para criar um sistema portuário foi pensado levando em consideração a alta atividade petrolífera e naval da região, tendo em vista um melhor gerenciamento e otimização de produção. A indústria naval brasileira é em sua maior parte voltada para a exploração do petróleo, porém não é o tipo de software que irei implementar, se trata de um sistema para construção de embarcações civis, lanchas e iates (Inicialmente apenas Lanchas).
 
 2 – Stakeholders
