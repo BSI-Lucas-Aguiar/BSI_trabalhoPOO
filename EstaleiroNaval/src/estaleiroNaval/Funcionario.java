@@ -51,18 +51,44 @@ public class Funcionario {
 		return null;
 	}
 	
+	public void demitirFuncionario() {
+		try {
+			Connection conexao = FabricaConexao.getConexao();
+			Statement demitirFun = conexao.createStatement();
+			System.out.println("Conexão com o BD realizada para demissão realizada!");
+			
+			demitirFun.execute("USE estaleiro_naval;");
+			demitirFun.execute("DELETE FROM funcionario WHERE nome ='" +this.getNome()+"'");
+			
+			conexao.close();
+			System.out.println("Conexão para demissão finalizada!");
+			
+		} catch (Exception e1) {
+			
+			e1.printStackTrace();
+		}
+	}
 	
 	public void cadastrarFuncionario() {
-		//Implementar
+		//Sendo feito na classe da tela
 	}
 	
-	public void demitirFuncionario() {
-		//Implementar
-	}
-	
-	
-	public void alterarProjeto() {
-		//Implementar
+	public void alterarDados() {
+		try {
+			Connection conexao = FabricaConexao.getConexao();
+			Statement demitirFun = conexao.createStatement();
+			System.out.println("Conexão com o BD realizada para alteração realizada!");
+			
+			demitirFun.execute("USE estaleiro_naval;");
+			demitirFun.execute("UPDATE funcionario SET cargo ='"+this.getCargo()+"', projetoAtual = '"+this.getProjetoAtual()+"' WHERE nome = '" +this.getNome()+"'");
+			
+			conexao.close();
+			System.out.println("Conexão para alteração finalizada!");
+			
+		} catch (Exception e1) {
+			
+			e1.printStackTrace();
+		}
 	}
 	
 	//Sets e Gets

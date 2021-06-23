@@ -167,16 +167,36 @@ public class TelaFuncionarios extends JFrame {
 		botaoCadastrarFuncionario.setBounds(276, 250, 168, 23);
 		panel.add(botaoCadastrarFuncionario);
 		
+		//Botão demitir funcionário
 		JButton botaoDemitirFuncionario = new JButton("Demitir Funcion\u00E1rio");
 		botaoDemitirFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Funcionario demissao = new Funcionario();
+				
+				demissao.setNome(textoNome.getText());
+				demissao.setCargo(textoCargo.getText());
+				demissao.setProjetoAtual(textoProjeto.getText());
+				
+				demissao.demitirFuncionario();
 			}
 		});
 		botaoDemitirFuncionario.setBounds(276, 309, 168, 23);
 		panel.add(botaoDemitirFuncionario);
 		
-		JButton botaoAlterarProjeto = new JButton("Alterar Projeto");
-		botaoAlterarProjeto.setBounds(510, 250, 126, 23);
-		panel.add(botaoAlterarProjeto);
+		//Botão alterar Dados
+		JButton botaoAlterarDados = new JButton("Alterar Dados");
+		botaoAlterarDados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Funcionario alterar = new Funcionario();
+				
+				alterar.setNome(textoNome.getText());
+				alterar.setCargo(textoCargo.getText());
+				alterar.setProjetoAtual(textoProjeto.getText());
+				
+				alterar.alterarDados();
+			}
+		});
+		botaoAlterarDados.setBounds(510, 250, 126, 23);
+		panel.add(botaoAlterarDados);
 	}
 }
