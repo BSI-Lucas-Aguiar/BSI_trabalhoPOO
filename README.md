@@ -25,7 +25,6 @@ Operários – Que irão de fato construir as embarcações e gerenciar o estoqu
 -Controle Financeiro: Controlar a entrada e saída de dinheiro, venda de embarcações.
 	
 4 – Requisitos do Sistema
-
 	O programa irá contar com uma interface principal onde o administrador poderá ter o controle da operação. Na tela principal ele poderá escolher algumas funcionalidades clicando em alguns botões, funcionalidades como:
 	
 -Gestão de Funcionários: Permite cadastrar e gerenciar os operários da operação, podendo designar um projeto para que ele trabalhe.
