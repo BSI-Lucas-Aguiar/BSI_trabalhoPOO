@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class TelaFuncionarios extends JFrame {
@@ -66,7 +67,7 @@ public class TelaFuncionarios extends JFrame {
 		
 		JTextArea textAreaFuncionarios = new JTextArea();
 		textAreaFuncionarios.setEditable(false);
-		textAreaFuncionarios.setBounds(10, 54, 243, 396);
+		textAreaFuncionarios.setBounds(10, 99, 243, 351);
 		panel.add(textAreaFuncionarios);
 		
 		//Função de Listar os Funcionários
@@ -105,38 +106,41 @@ public class TelaFuncionarios extends JFrame {
 	            }
 			}
 		});
-		botaoListarFuncionarios.setBounds(47, 11, 162, 23);
+		botaoListarFuncionarios.setBounds(48, 65, 162, 23);
 		panel.add(botaoListarFuncionarios);
 		
 		
 		textoNome = new JTextField();
-		textoNome.setBounds(276, 56, 360, 20);
+		textoNome.setBounds(276, 100, 360, 20);
 		panel.add(textoNome);
 		textoNome.setColumns(10);
 		
 		textoCargo = new JTextField();
-		textoCargo.setBounds(276, 117, 360, 20);
+		textoCargo.setBounds(276, 161, 360, 20);
 		panel.add(textoCargo);
 		textoCargo.setColumns(10);
 		
 		textoProjeto = new JTextField();
-		textoProjeto.setBounds(276, 179, 360, 20);
+		textoProjeto.setBounds(276, 223, 360, 20);
 		panel.add(textoProjeto);
 		textoProjeto.setColumns(10);
 		
 		JLabel labelNome = new JLabel("Nome");
+		labelNome.setLabelFor(textoNome);
 		labelNome.setHorizontalAlignment(SwingConstants.CENTER);
-		labelNome.setBounds(433, 31, 46, 14);
+		labelNome.setBounds(433, 75, 46, 14);
 		panel.add(labelNome);
 		
 		JLabel labelCargo = new JLabel("Cargo");
+		labelCargo.setLabelFor(textoCargo);
 		labelCargo.setHorizontalAlignment(SwingConstants.CENTER);
-		labelCargo.setBounds(433, 92, 46, 14);
+		labelCargo.setBounds(433, 136, 46, 14);
 		panel.add(labelCargo);
 		
 		JLabel labelProjeto = new JLabel("Projeto");
+		labelProjeto.setLabelFor(textoProjeto);
 		labelProjeto.setHorizontalAlignment(SwingConstants.CENTER);
-		labelProjeto.setBounds(433, 154, 46, 14);
+		labelProjeto.setBounds(433, 198, 46, 14);
 		panel.add(labelProjeto);
 		
 		//Botão Cadastrar Funcionário
@@ -165,7 +169,7 @@ public class TelaFuncionarios extends JFrame {
 				
 			}
 		});
-		botaoCadastrarFuncionario.setBounds(372, 250, 168, 23);
+		botaoCadastrarFuncionario.setBounds(372, 294, 168, 23);
 		panel.add(botaoCadastrarFuncionario);
 		
 		//Botão Demitir Funcionário
@@ -184,7 +188,7 @@ public class TelaFuncionarios extends JFrame {
 				JOptionPane.showMessageDialog(null, "Funcionário demitido!");
 			}
 		});
-		botaoDemitirFuncionario.setBounds(372, 348, 168, 23);
+		botaoDemitirFuncionario.setBounds(372, 392, 168, 23);
 		panel.add(botaoDemitirFuncionario);
 		
 		//Botão Alterar Dados
@@ -202,7 +206,18 @@ public class TelaFuncionarios extends JFrame {
 				
 			}
 		});
-		botaoAlterarDados.setBounds(372, 298, 168, 23);
+		botaoAlterarDados.setBounds(372, 342, 168, 23);
 		panel.add(botaoAlterarDados);
+		
+		JLabel labelInstrucoes = new JLabel("As altera\u00E7\u00F5es s\u00E3o feitas com base no \"Nome\"");
+		labelInstrucoes.setHorizontalAlignment(SwingConstants.CENTER);
+		labelInstrucoes.setBounds(276, 254, 360, 14);
+		panel.add(labelInstrucoes);
+		
+		JLabel labelFuncionarios = new JLabel("Cadastro de Funcion\u00E1rios");
+		labelFuncionarios.setFont(new Font("Tahoma", Font.BOLD, 24));
+		labelFuncionarios.setHorizontalAlignment(SwingConstants.CENTER);
+		labelFuncionarios.setBounds(0, 11, 684, 32);
+		panel.add(labelFuncionarios);
 	}
 }

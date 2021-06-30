@@ -9,17 +9,21 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Toolkit;
-import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
 public class TelaEstoque extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textoRetirarMaterial;
+	private JTextField textoNome;
+	private JTextField textoQuantidade;
+	private JTextField textoMaterialEmEstoque;
+	private JTextField textoDinheiroEmCaixa;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -56,24 +60,78 @@ public class TelaEstoque extends JFrame {
 		textoRetirarMaterial.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textoRetirarMaterial.setForeground(Color.BLACK);
 		textoRetirarMaterial.setColumns(10);
-		textoRetirarMaterial.setBounds(57, 295, 185, 25);
+		textoRetirarMaterial.setBounds(367, 239, 160, 25);
 		panel.add(textoRetirarMaterial);
 		
 		//Botão Retirar material
 		//********************************************************************************************************
 		JButton botaoRetirarMaterial = new JButton("Retirar Material");
-		botaoRetirarMaterial.setBounds(358, 282, 160, 55);
+		botaoRetirarMaterial.setBounds(367, 275, 160, 55);
 		panel.add(botaoRetirarMaterial);
 		
 		JLabel labelEstoque = new JLabel("ESTOQUE DE MATERIAIS");
-		labelEstoque.setForeground(Color.YELLOW);
+		labelEstoque.setHorizontalAlignment(SwingConstants.CENTER);
+		labelEstoque.setForeground(Color.BLACK);
 		labelEstoque.setFont(new Font("Segoe UI Black", Font.BOLD, 34));
-		labelEstoque.setBounds(73, 35, 437, 36);
+		labelEstoque.setBounds(0, 21, 584, 36);
 		panel.add(labelEstoque);
 		
-		JLabel labelFundoEstoque = new JLabel("Imagem Fundo");
-		labelFundoEstoque.setIcon(new ImageIcon(TelaEstoque.class.getResource("/imagens/fundo_estoque.jpg")));
-		labelFundoEstoque.setBounds(0, 0, 584, 361);
-		panel.add(labelFundoEstoque);
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(25, 259, 224, 91);
+		panel.add(textArea);
+		
+		JButton botaoListarMateriais = new JButton("Listar Materiais");
+		botaoListarMateriais.setBounds(51, 225, 171, 23);
+		panel.add(botaoListarMateriais);
+		
+		textoNome = new JTextField();
+		textoNome.setBounds(367, 98, 160, 20);
+		panel.add(textoNome);
+		textoNome.setColumns(10);
+		
+		JLabel labelNome = new JLabel("Nome do Material");
+		labelNome.setLabelFor(textoNome);
+		labelNome.setHorizontalAlignment(SwingConstants.CENTER);
+		labelNome.setBounds(384, 83, 126, 14);
+		panel.add(labelNome);
+		
+		textoQuantidade = new JTextField();
+		textoQuantidade.setColumns(10);
+		textoQuantidade.setBounds(367, 143, 160, 20);
+		panel.add(textoQuantidade);
+		
+		JLabel labelQuantidadeDeMaterial = new JLabel("Quantidade de Material");
+		labelQuantidadeDeMaterial.setLabelFor(textoQuantidade);
+		labelQuantidadeDeMaterial.setHorizontalAlignment(SwingConstants.CENTER);
+		labelQuantidadeDeMaterial.setBounds(384, 129, 126, 14);
+		panel.add(labelQuantidadeDeMaterial);
+		
+		JButton botaoComprarMaterial = new JButton("Comprar Material");
+		botaoComprarMaterial.setBounds(367, 182, 160, 23);
+		panel.add(botaoComprarMaterial);
+		
+		JLabel labelMaterialEmEstoque = new JLabel("Material em Estoque");
+		labelMaterialEmEstoque.setHorizontalAlignment(SwingConstants.CENTER);
+		labelMaterialEmEstoque.setBounds(25, 83, 126, 14);
+		panel.add(labelMaterialEmEstoque);
+		
+		textoMaterialEmEstoque = new JTextField();
+		labelMaterialEmEstoque.setLabelFor(textoMaterialEmEstoque);
+		textoMaterialEmEstoque.setEditable(false);
+		textoMaterialEmEstoque.setBounds(161, 82, 88, 20);
+		panel.add(textoMaterialEmEstoque);
+		textoMaterialEmEstoque.setColumns(10);
+		
+		JLabel labelDinheiroEmCaixa = new JLabel("Dinheiro Em Caixa");
+		labelDinheiroEmCaixa.setHorizontalAlignment(SwingConstants.CENTER);
+		labelDinheiroEmCaixa.setBounds(25, 129, 126, 14);
+		panel.add(labelDinheiroEmCaixa);
+		
+		textoDinheiroEmCaixa = new JTextField();
+		labelDinheiroEmCaixa.setLabelFor(textoDinheiroEmCaixa);
+		textoDinheiroEmCaixa.setEditable(false);
+		textoDinheiroEmCaixa.setColumns(10);
+		textoDinheiroEmCaixa.setBounds(161, 126, 88, 20);
+		panel.add(textoDinheiroEmCaixa);
 	}
 }

@@ -23,14 +23,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
-public class TelaCompras extends JFrame {
+public class TelaCadastroMateriais extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textoQuantidade;
-	private JTextField textoInformarMaterial;
 	private JTextField textoNomeMaterial;
 	private JTextField textoPrecoMaterial;
 
@@ -40,7 +38,7 @@ public class TelaCompras extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCompras frame = new TelaCompras();
+					TelaCadastroMateriais frame = new TelaCadastroMateriais();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,9 +47,9 @@ public class TelaCompras extends JFrame {
 		});
 	}
 
-	public TelaCompras() {
-		setTitle("Compras");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCompras.class.getResource("/imagens/icone_estaleiro.png")));
+	public TelaCadastroMateriais() {
+		setTitle("Cadastro de Materiais");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroMateriais.class.getResource("/imagens/icone_estaleiro.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 600, 400);
 		setResizable(false);
@@ -64,24 +62,6 @@ public class TelaCompras extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
-		textoQuantidade = new JTextField();
-		textoQuantidade.setToolTipText("Informe a quantidade de material.");
-		textoQuantidade.setBounds(24, 79, 152, 20);
-		panel.add(textoQuantidade);
-		textoQuantidade.setColumns(10);
-		
-		//Botão de comprar Material ainda não implementado - Depende da classe estoque e caixa ainda não criadas
-		//********************************************************************************************************
-		JButton botaoComprarMaterial = new JButton("Comprar Material");
-		botaoComprarMaterial.setBounds(24, 108, 152, 23);
-		panel.add(botaoComprarMaterial);
-		
-		textoInformarMaterial = new JTextField();
-		textoInformarMaterial.setToolTipText("Informe qual material.");
-		textoInformarMaterial.setBounds(24, 30, 152, 20);
-		panel.add(textoInformarMaterial);
-		textoInformarMaterial.setColumns(10);
 		
 		JTextArea textAreaCompra = new JTextArea();
 		textAreaCompra.setBounds(10, 235, 554, 105);
@@ -123,39 +103,32 @@ public class TelaCompras extends JFrame {
 	            }
 			}
 		});
-		botaoListarMateriais.setBounds(204, 201, 136, 23);
+		botaoListarMateriais.setBounds(218, 201, 145, 23);
 		panel.add(botaoListarMateriais);
 		
 		textoNomeMaterial = new JTextField();
-		textoNomeMaterial.setBounds(428, 63, 118, 20);
+		textoNomeMaterial.setBounds(10, 74, 145, 20);
 		panel.add(textoNomeMaterial);
 		textoNomeMaterial.setColumns(10);
 		
 		JLabel labelCadastroMateriais = new JLabel("Cadastro de Materiais");
-		labelCadastroMateriais.setBounds(410, 14, 126, 14);
+		labelCadastroMateriais.setHorizontalAlignment(SwingConstants.CENTER);
+		labelCadastroMateriais.setFont(new Font("Tahoma", Font.BOLD, 20));
+		labelCadastroMateriais.setBounds(0, 11, 584, 25);
 		panel.add(labelCadastroMateriais);
 		
 		JLabel labelNomeMaterial = new JLabel("Nome do Material");
 		labelNomeMaterial.setLabelFor(textoNomeMaterial);
-		labelNomeMaterial.setBounds(428, 46, 102, 14);
+		labelNomeMaterial.setBounds(10, 49, 102, 14);
 		panel.add(labelNomeMaterial);
 		
-		JLabel labelMaterial = new JLabel("Material - Somente ser\u00E1 implementado no futuro");
-		labelMaterial.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMaterial.setBounds(24, 14, 244, 14);
-		panel.add(labelMaterial);
-		
-		JLabel labelQuantidade = new JLabel("Quantidade - Somente ser\u00E1 implementado no futuro");
-		labelQuantidade.setHorizontalAlignment(SwingConstants.CENTER);
-		labelQuantidade.setBounds(24, 61, 258, 14);
-		panel.add(labelQuantidade);
-		
 		JLabel labelPreçoMaterial = new JLabel("Pre\u00E7o do Material");
-		labelPreçoMaterial.setBounds(428, 94, 102, 14);
+		labelPreçoMaterial.setBounds(10, 105, 102, 14);
 		panel.add(labelPreçoMaterial);
 		
 		textoPrecoMaterial = new JTextField();
-		textoPrecoMaterial.setBounds(428, 109, 118, 20);
+		labelPreçoMaterial.setLabelFor(textoPrecoMaterial);
+		textoPrecoMaterial.setBounds(10, 130, 145, 20);
 		panel.add(textoPrecoMaterial);
 		textoPrecoMaterial.setColumns(10);
 		
@@ -184,7 +157,7 @@ public class TelaCompras extends JFrame {
 				}
 			}
 		});
-		botaoCadastrarMaterial.setBounds(401, 138, 145, 23);
+		botaoCadastrarMaterial.setBounds(10, 161, 145, 23);
 		panel.add(botaoCadastrarMaterial);
 		
 		//Botão Excluir Material
@@ -201,11 +174,11 @@ public class TelaCompras extends JFrame {
 				JOptionPane.showMessageDialog(null, "Material cadastrado no BD!");
 			}
 		});
-		botaoExcluirMaterial.setBounds(401, 172, 145, 23);
+		botaoExcluirMaterial.setBounds(218, 161, 145, 23);
 		panel.add(botaoExcluirMaterial);
 		
-		JLabel labelPonto = new JLabel("Double se ponto Ex: 5.50");
-		labelPonto.setBounds(280, 112, 152, 14);
+		JLabel labelPonto = new JLabel("Double, use ponto Ex: 5.50");
+		labelPonto.setBounds(165, 133, 152, 14);
 		panel.add(labelPonto);
 		
 		//Botão Alterar Material - Altera o preço de um material
@@ -222,12 +195,7 @@ public class TelaCompras extends JFrame {
 				
 			}
 		});
-		labelAlterarMaterial.setBounds(401, 206, 145, 23);
+		labelAlterarMaterial.setBounds(419, 161, 145, 23);
 		panel.add(labelAlterarMaterial);
-		
-		JLabel labelFundoCompra = new JLabel("");
-		labelFundoCompra.setIcon(new ImageIcon(TelaCompras.class.getResource("/imagens/fundo_compra.jpg")));
-		labelFundoCompra.setBounds(0, -691, 866, 1200);
-		panel.add(labelFundoCompra);
 	}
 }

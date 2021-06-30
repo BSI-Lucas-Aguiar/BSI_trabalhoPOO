@@ -17,6 +17,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.SwingConstants;
 
 //Iniciar a Tela
 //********************************************************************************************************
@@ -85,19 +86,19 @@ public class TelaPrincipal extends JFrame {
 		});
 		menuEstoque.add(menuEstoqueManipularEstoque);
 		
-		JMenu menuCompra = new JMenu("Compra");
-		menuBar.add(menuCompra);
+		JMenu menuMateriais = new JMenu("Materiais");
+		menuBar.add(menuMateriais);
 		
 		//Janela de Compra
 		//********************************************************************************************************
-		JMenuItem menuCompraManipularCompras = new JMenuItem("Manipular Compras");
-		menuCompraManipularCompras.addActionListener(new ActionListener() {
+		JMenuItem menuManipularMateriais = new JMenuItem("Manipular Materiais");
+		menuManipularMateriais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaCompras telaCompras = new TelaCompras();
+				TelaCadastroMateriais telaCompras = new TelaCadastroMateriais();
 				telaCompras.setVisible(true);
 			}
 		});
-		menuCompra.add(menuCompraManipularCompras);
+		menuMateriais.add(menuManipularMateriais);
 		
 		JMenu menuCaixa = new JMenu("Caixa");
 		menuBar.add(menuCaixa);
@@ -125,10 +126,11 @@ public class TelaPrincipal extends JFrame {
 		painel.setLayout(null);
 		
 		JLabel labelMain = new JLabel("ESTALEIRO NAVAL");
+		labelMain.setHorizontalAlignment(SwingConstants.CENTER);
 		labelMain.setBackground(new Color(0, 0, 0));
 		labelMain.setForeground(new Color(0, 51, 102));
 		labelMain.setFont(new Font("Verdana", Font.BOLD, 50));
-		labelMain.setBounds(124, 29, 532, 49);
+		labelMain.setBounds(0, 29, 784, 49);
 		painel.add(labelMain);
 		
 		//Label com meu instagram
