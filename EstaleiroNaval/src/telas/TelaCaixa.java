@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class TelaCaixa extends JFrame {
@@ -59,22 +60,22 @@ public class TelaCaixa extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		botaoSaldoEmCaixa.setBounds(89, 46, 143, 23);
+		botaoSaldoEmCaixa.setBounds(89, 89, 143, 23);
 		panel.add(botaoSaldoEmCaixa);
 		
 		textoSaldo = new JTextField();
 		textoSaldo.setEditable(false);
-		textoSaldo.setBounds(89, 87, 143, 20);
+		textoSaldo.setBounds(89, 141, 143, 20);
 		panel.add(textoSaldo);
 		textoSaldo.setColumns(10);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
-		textArea.setBounds(325, 45, 199, 305);
+		textArea.setBounds(325, 88, 199, 262);
 		panel.add(textArea);
 		
 		JButton botaoListarProjetos = new JButton("Listar Projetos");
-		botaoListarProjetos.setBounds(348, 11, 156, 23);
+		botaoListarProjetos.setBounds(347, 46, 156, 23);
 		panel.add(botaoListarProjetos);
 		
 		JLabel labelNomeProjeto = new JLabel("Nome do Projeto");
@@ -91,5 +92,11 @@ public class TelaCaixa extends JFrame {
 		JButton botaoVenderProjeto = new JButton("Vender Projeto");
 		botaoVenderProjeto.setBounds(89, 286, 143, 23);
 		panel.add(botaoVenderProjeto);
+		
+		JLabel lblNewLabel = new JLabel("ADMINISTRA\u00C7\u00C3O DE CAIXA");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(0, 11, 534, 24);
+		panel.add(lblNewLabel);
 	}
 }

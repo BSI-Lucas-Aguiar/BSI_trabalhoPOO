@@ -7,6 +7,7 @@ public abstract class Projeto {
 	protected int materialUtilizado;
 	protected boolean vendido;
 	protected double valorEmbarcacao;
+	protected String tipo;
 	
 	public Projeto(String codigoProjeto, int quantidadeMaterial, int materialUtilizado, boolean vendido, double valorEmbarcacao) {
 		this.codigoProjeto = codigoProjeto;
@@ -16,6 +17,8 @@ public abstract class Projeto {
 		this.valorEmbarcacao = valorEmbarcacao;
 	}
 	
+	
+
 	public void listarProjetos() {
 		//Implementar
 	}
@@ -51,7 +54,12 @@ public abstract class Projeto {
 	public void setValorEmbarcacao(double valorEmbarcacao) {
 		this.valorEmbarcacao = valorEmbarcacao;
 	}
-	
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 	
 	
 }

@@ -214,7 +214,7 @@ public class TelaFuncionarios extends JFrame {
 		labelInstrucoes.setBounds(276, 254, 360, 14);
 		panel.add(labelInstrucoes);
 		
-		JLabel labelFuncionarios = new JLabel("Cadastro de Funcion\u00E1rios");
+		JLabel labelFuncionarios = new JLabel("CADASTRO DE FUNCION\u00C1RIOS");
 		labelFuncionarios.setFont(new Font("Tahoma", Font.BOLD, 24));
 		labelFuncionarios.setHorizontalAlignment(SwingConstants.CENTER);
 		labelFuncionarios.setBounds(0, 11, 684, 32);

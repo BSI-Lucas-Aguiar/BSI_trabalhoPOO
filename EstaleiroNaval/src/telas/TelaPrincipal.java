@@ -57,7 +57,13 @@ public class TelaPrincipal extends JFrame {
 		JMenu menuProjetos = new JMenu("Projetos");
 		menuBar.add(menuProjetos);
 		
-		JMenuItem menuProjetosManipularProjeto = new JMenuItem("Manipular Projetos(N\u00E3o Implementado)");
+		JMenuItem menuProjetosManipularProjeto = new JMenuItem("Manipular Projetos");
+		menuProjetosManipularProjeto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaProjeto telaProjeto = new TelaProjeto();
+				telaProjeto.setVisible(true);
+			}
+		});
 		menuProjetos.add(menuProjetosManipularProjeto);
 		
 		JMenu menuFuncionarios = new JMenu("Funcion\u00E1rios");

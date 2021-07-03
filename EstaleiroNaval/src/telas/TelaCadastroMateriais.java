@@ -111,7 +111,7 @@ public class TelaCadastroMateriais extends JFrame {
 		panel.add(textoNomeMaterial);
 		textoNomeMaterial.setColumns(10);
 		
-		JLabel labelCadastroMateriais = new JLabel("Cadastro de Materiais");
+		JLabel labelCadastroMateriais = new JLabel("CADASTRO DE MATERIAIS");
 		labelCadastroMateriais.setHorizontalAlignment(SwingConstants.CENTER);
 		labelCadastroMateriais.setFont(new Font("Tahoma", Font.BOLD, 20));
 		labelCadastroMateriais.setBounds(0, 11, 584, 25);
