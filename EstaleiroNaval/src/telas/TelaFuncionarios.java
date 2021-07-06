@@ -163,8 +163,7 @@ public class TelaFuncionarios extends JFrame {
 					JOptionPane.showMessageDialog(null, "Funcionário cadastrado!");
 					
 				} catch (Exception e1) {
-					
-					e1.printStackTrace();
+					System.err.println("Erro no cadastro de funcionário"+ e1);
 				}
 				
 			}

@@ -1,26 +1,58 @@
 package estaleiroNaval;
 
-public abstract class Projeto {
-	
-	protected String codigoProjeto;
-	protected int quantidadeMaterial;
-	protected int materialUtilizado;
-	protected boolean vendido;
-	protected double valorEmbarcacao;
-	protected String tipo;
-	
-	public Projeto(String codigoProjeto, int quantidadeMaterial, int materialUtilizado, boolean vendido, double valorEmbarcacao) {
-		this.codigoProjeto = codigoProjeto;
-		this.quantidadeMaterial = quantidadeMaterial;
-		this.materialUtilizado = materialUtilizado;
-		this.vendido = vendido;
-		this.valorEmbarcacao = valorEmbarcacao;
-	}
-	
-	
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 
-	public void listarProjetos() {
-		//Implementar
+import persistencia.FabricaConexao;
+
+public class Projeto {
+	
+	private String codigoProjeto;
+	private int quantidadeMaterial;
+	private int materialUtilizado;
+	private boolean vendido;
+	private double valorEmbarcacao;
+	private String tipo;
+	
+	public ArrayList<Projeto> listarProjetos() {
+		try {
+			Connection conexao = FabricaConexao.getConexao();
+			Statement stmt = conexao.createStatement();
+			System.out.println("Conexão com o BD realizada para cadastro de Projeto!");
+			
+			String queryListarProjeto = "SELECT * FROM estaleiro_naval.lancha";
+			
+			ResultSet resultado = stmt.executeQuery(queryListarProjeto);
+			
+			ArrayList<Projeto> listaProjeto = new ArrayList<Projeto>();
+			
+			while(resultado.next()) {
+				Projeto proj = new Projeto();
+				
+				proj.setCodigoProjeto(resultado.getString("codigoProjeto"));
+				proj.setQuantidadeMaterial(resultado.getInt("quantidadeMaterial"));
+				proj.setMaterialUtilizado(resultado.getInt("materialUtilizado"));
+				proj.setVendido(resultado.getBoolean("vendido"));
+				proj.setValorEmbarcacao(resultado.getDouble("valorEmbarcacao"));
+				proj.setTipo(resultado.getString("tipo"));
+				
+				listaProjeto.add(proj);
+				
+			}
+			
+			conexao.close();
+			System.out.println("Conexão para listagem de Projetos finalizada!");
+			
+			return listaProjeto;
+			
+		} catch (Exception e1) {
+			System.err.println("Erro no cadastro de projeto"+e1);
+		}
+		
+		
+		return null;
 	}
 	
 	//Sets e Gets

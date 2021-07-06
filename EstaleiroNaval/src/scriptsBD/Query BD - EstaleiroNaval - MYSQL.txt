@@ -2,16 +2,16 @@ CREATE DATABASE IF NOT EXISTS estaleiro_naval;
 
 USE estaleiro_naval;
 
-CREATE TABLE IF NOT EXISTS lancha(codigoProjeto varchar(255), quantidadeMaterial int, materialUtilizado int, vendido boolean, valorEmbarcacao double, nomeLancha varchar(255));
+CREATE TABLE IF NOT EXISTS lancha(codigoProjeto varchar(255), quantidadeMaterial int, materialUtilizado int, vendido boolean, valorEmbarcacao double, tipo varchar(255));
 
 CREATE TABLE IF NOT EXISTS estoque(idEstoque int, estoqueMaterial int, UNIQUE INDEX estoque_unico (`idEstoque` ASC));
--- Comando feito com ignore para manter o estoque apÃ³s o programa ser executado novamente
+-- Comando feito com ignore para manter o estoque após o programa ser executado novamente
 INSERT IGNORE INTO estoque(idEstoque, estoqueMaterial) VALUES(1, 0);
 
 CREATE TABLE IF NOT EXISTS compra(nomeMaterial varchar(255), precoMaterial double);
 
 CREATE TABLE IF NOT EXISTS caixa(idCaixa int, totalCaixa double, UNIQUE INDEX caixa_unico (`idCaixa` ASC));
--- Comando feito com ignore para manter o caixa apÃ³s o programa ser executado novamente
+-- Comando feito com ignore para manter o caixa após o programa ser executado novamente
 INSERT IGNORE INTO caixa(idCaixa, totalCaixa) VALUES(1, 0);
 
 CREATE TABLE IF NOT EXISTS funcionario(nome varchar(255), cargo varchar(255), projetoAtual varchar(255));

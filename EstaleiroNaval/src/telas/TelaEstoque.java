@@ -6,7 +6,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import estaleiroNaval.Caixa;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.Color;
@@ -14,6 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class TelaEstoque extends JFrame {
@@ -23,7 +30,7 @@ public class TelaEstoque extends JFrame {
 	private JTextField textoNome;
 	private JTextField textoQuantidade;
 	private JTextField textoMaterialEmEstoque;
-	private JTextField textoDinheiroEmCaixa;
+	private JTextField textoSaldoCaixa;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -122,16 +129,38 @@ public class TelaEstoque extends JFrame {
 		panel.add(textoMaterialEmEstoque);
 		textoMaterialEmEstoque.setColumns(10);
 		
-		JLabel labelDinheiroEmCaixa = new JLabel("Dinheiro Em Caixa");
+		JLabel labelDinheiroEmCaixa = new JLabel("Saldo Em Caixa");
 		labelDinheiroEmCaixa.setHorizontalAlignment(SwingConstants.CENTER);
 		labelDinheiroEmCaixa.setBounds(25, 129, 126, 14);
 		panel.add(labelDinheiroEmCaixa);
 		
-		textoDinheiroEmCaixa = new JTextField();
-		labelDinheiroEmCaixa.setLabelFor(textoDinheiroEmCaixa);
-		textoDinheiroEmCaixa.setEditable(false);
-		textoDinheiroEmCaixa.setColumns(10);
-		textoDinheiroEmCaixa.setBounds(161, 126, 88, 20);
-		panel.add(textoDinheiroEmCaixa);
+		textoSaldoCaixa = new JTextField();
+		labelDinheiroEmCaixa.setLabelFor(textoSaldoCaixa);
+		textoSaldoCaixa.setEditable(false);
+		textoSaldoCaixa.setColumns(10);
+		textoSaldoCaixa.setBounds(161, 126, 88, 20);
+		panel.add(textoSaldoCaixa);
+		
+		JButton botaoAtualizar = new JButton("Atualizar");
+		botaoAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+	                //Pegar o valor do BD
+	                Caixa caixa = new Caixa();
+	                
+	                String totalCaixa;
+	                totalCaixa = Double.toString(caixa.consultarTotal());
+	                
+	                textoSaldoCaixa.setText(totalCaixa);
+	                
+	                JOptionPane.showMessageDialog(null, "Saldo Atualizado!");
+				}
+	            catch (Exception ex) {
+	                System.err.println("Erro geral: "+ex.getMessage());
+	            }
+			}
+		});
+		botaoAtualizar.setBounds(160, 168, 89, 23);
+		panel.add(botaoAtualizar);
 	}
 }

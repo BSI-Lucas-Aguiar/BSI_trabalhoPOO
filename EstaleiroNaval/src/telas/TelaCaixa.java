@@ -7,22 +7,35 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import persistencia.FabricaConexao;
+
 import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
+import estaleiroNaval.Caixa;
+import estaleiroNaval.Funcionario;
+
 @SuppressWarnings("serial")
 public class TelaCaixa extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textoSaldo;
 	private JTextField textoNomeProjeto;
+	private JTextField textoSaldoCaixa;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -58,16 +71,24 @@ public class TelaCaixa extends JFrame {
 		JButton botaoSaldoEmCaixa = new JButton("Saldo em Caixa");
 		botaoSaldoEmCaixa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+	                //Pegar o valor do BD
+	                Caixa caixa = new Caixa();
+	                
+	                String totalCaixa;
+	                totalCaixa = Double.toString(caixa.consultarTotal());
+	                
+	                textoSaldoCaixa.setText(totalCaixa);
+	                
+	                JOptionPane.showMessageDialog(null, "Saldo Atualizado!");
+				}
+	            catch (Exception ex) {
+	                System.err.println("Erro geral: "+ex.getMessage());
+	            }
 			}
 		});
 		botaoSaldoEmCaixa.setBounds(89, 89, 143, 23);
 		panel.add(botaoSaldoEmCaixa);
-		
-		textoSaldo = new JTextField();
-		textoSaldo.setEditable(false);
-		textoSaldo.setBounds(89, 141, 143, 20);
-		panel.add(textoSaldo);
-		textoSaldo.setColumns(10);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
@@ -93,10 +114,18 @@ public class TelaCaixa extends JFrame {
 		botaoVenderProjeto.setBounds(89, 286, 143, 23);
 		panel.add(botaoVenderProjeto);
 		
-		JLabel lblNewLabel = new JLabel("ADMINISTRA\u00C7\u00C3O DE CAIXA");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(0, 11, 534, 24);
-		panel.add(lblNewLabel);
+		JLabel labelAdministracaoCaixa = new JLabel("ADMINISTRA\u00C7\u00C3O DE CAIXA");
+		labelAdministracaoCaixa.setFont(new Font("Tahoma", Font.BOLD, 16));
+		labelAdministracaoCaixa.setHorizontalAlignment(SwingConstants.CENTER);
+		labelAdministracaoCaixa.setBounds(0, 11, 534, 24);
+		panel.add(labelAdministracaoCaixa);
+		
+		textoSaldoCaixa = new JTextField();
+		textoSaldoCaixa.setEditable(false);
+		textoSaldoCaixa.setBounds(89, 123, 143, 20);
+		panel.add(textoSaldoCaixa);
+		textoSaldoCaixa.setColumns(10);
+		
+		
 	}
 }

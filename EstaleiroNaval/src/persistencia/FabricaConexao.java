@@ -12,7 +12,7 @@ public class FabricaConexao {
 		String usuario = "root"; 
 		String senha = "1234"; 
 
-		System.out.println("Conexão com o BD efetuada!");
+		System.out.println("Conexão com o BD efetuada - Fabrica Conexão!");
 		return DriverManager.getConnection(url, usuario, senha);
 	
 	}

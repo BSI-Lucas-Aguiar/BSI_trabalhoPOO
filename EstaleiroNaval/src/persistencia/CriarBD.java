@@ -19,7 +19,7 @@ public class CriarBD {
 		criarBD.execute("USE estaleiro_naval;");
 		System.out.println("Utilizando o BD estaleiro_Naval...");
 		//Criar tabela lancha
-		criarBD.execute("CREATE TABLE IF NOT EXISTS lancha(codigoProjeto varchar(255), quantidadeMaterial int, materialUtilizado int, vendido boolean, valorEmbarcacao double, nomeLancha varchar(255));");
+		criarBD.execute("CREATE TABLE IF NOT EXISTS lancha(codigoProjeto varchar(255), quantidadeMaterial int, materialUtilizado int, vendido boolean, valorEmbarcacao double, tipo varchar(255));");
 		
 		//Criar tabela estoque
 		criarBD.execute("CREATE TABLE IF NOT EXISTS estoque(idEstoque int, estoqueMaterial int, UNIQUE INDEX estoque_unico (`idEstoque` ASC));");
