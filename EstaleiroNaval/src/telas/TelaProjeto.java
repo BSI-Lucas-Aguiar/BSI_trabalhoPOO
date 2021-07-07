@@ -12,7 +12,6 @@ import estaleiroNaval.Projeto;
 import persistencia.FabricaConexao;
 
 import java.awt.Toolkit;
-import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -72,10 +71,6 @@ public class TelaProjeto extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JTextArea textoListarProjetos = new JTextArea();
-		textoListarProjetos.setBounds(10, 351, 555, 150);
-		contentPane.add(textoListarProjetos);
-		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 208, 564, 142);
 		contentPane.add(scrollPane);
@@ -86,9 +81,9 @@ public class TelaProjeto extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"C\u00F3digo do Projeto", "Material Necess\u00E1rio", "Utilizado", "Vendido?", "Valor de Venda", "Tipo"
+				"C\u00F3digo Proj", "Material Necess\u00E1rio", "Utilizado", "Vendido?", "Valor de Venda", "Tipo"
 			}
-			) {
+		) {
 			boolean[] columnEditables = new boolean[] {
 				false, false, false, false, false, false
 			};
@@ -98,9 +93,9 @@ public class TelaProjeto extends JFrame {
 		});
 		tabelaProjetos.getColumnModel().getColumn(0).setPreferredWidth(125);
 		tabelaProjetos.getColumnModel().getColumn(1).setPreferredWidth(125);
-		tabelaProjetos.getColumnModel().getColumn(2).setPreferredWidth(90);
 		tabelaProjetos.getColumnModel().getColumn(2).setPreferredWidth(100);
 		tabelaProjetos.getColumnModel().getColumn(4).setPreferredWidth(100);
+		
 		scrollPane.setViewportView(tabelaProjetos);
 		
 		
@@ -133,37 +128,6 @@ public class TelaProjeto extends JFrame {
 	                    tabelaProjetos.setModel(tabela);
 	                    //tabelaProjetos.setEnabled(false); //Bloqueia a seleção na tabela
 	                }
-					
-					/*
-	                //Conexão da FabricaConexao
-					Connection conexao = FabricaConexao.getConexao();
-					System.out.println("Conexão com o BD para listar os projetos!");
-
-					Projeto proj = new Projeto();
-
-	                //Pega os funcionários do BD e forma uma arraylist
-	                ArrayList<Projeto> listaProjeto = proj.listarProjetos();
-
-	                if(listaProjeto != null) {
-	                	textoListarProjetos.setText("");
-	                    for(Projeto p: listaProjeto) {
-	                    	textoListarProjetos.setText(textoListarProjetos.getText()+ p.getCodigoProjeto()+" | "+ p.getQuantidadeMaterial()+" | "+p.getMaterialUtilizado()+" | "+p.isVendido()+" | "+p.getValorEmbarcacao()+" | "+p.getTipo()+ "\n");
-
-	                    }
-	                }
-	                
-	                JOptionPane.showMessageDialog(null, "Lista de Projetos Atualizada!");
-	                conexao.close();
-	                System.out.println("Conexão para listar Projetos finalizada!");
-
-	            }
-	            catch (SQLException ex) {
-	                System.err.println("Erro na conexão do BD: "+ex.getMessage());
-	            }
-	            catch (Exception ex) {
-	                System.err.println("Erro geral: "+ex.getMessage());
-	            }
-	            */
 			}
 		});
 		botaoListarProjetos.setBounds(210, 149, 150, 23);
@@ -244,10 +208,32 @@ public class TelaProjeto extends JFrame {
 		contentPane.add(botaoCadastrarProjeto);
 		
 		JButton botaoAlterarProjeto = new JButton("Alterar Projeto");
+		botaoAlterarProjeto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Projeto alterar = new Projeto();
+				
+				alterar.setCodigoProjeto(textoCodigoProjeto.getText());
+				alterar.setValorEmbarcacao(Double.parseDouble(textoValorEmbarcacao.getText()));
+				alterar.setQuantidadeMaterial(Integer.parseInt(textoQuantidadeMaterial.getText()));
+				
+				alterar.alterarProjeto();
+			}
+		});
 		botaoAlterarProjeto.setBounds(415, 149, 150, 23);
 		contentPane.add(botaoAlterarProjeto);
 		
 		JButton botaoDeletarProjeto = new JButton("Deletar Projeto");
+		botaoDeletarProjeto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Projeto deletar = new Projeto();
+				
+				deletar.setCodigoProjeto(textoCodigoProjeto.getText());
+				
+				deletar.deletarProjeto();
+				
+				JOptionPane.showMessageDialog(null, "Projeto deletado!");
+			}
+		});
 		botaoDeletarProjeto.setBounds(415, 174, 150, 23);
 		contentPane.add(botaoDeletarProjeto);
 		

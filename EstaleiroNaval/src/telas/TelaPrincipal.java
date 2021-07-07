@@ -97,7 +97,7 @@ public class TelaPrincipal extends JFrame {
 		
 		//Janela de Compra
 		//********************************************************************************************************
-		JMenuItem menuManipularMateriais = new JMenuItem("Manipular Materiais");
+		JMenuItem menuManipularMateriais = new JMenuItem("Cadastro de Materiais");
 		menuManipularMateriais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaCadastroMateriais telaCompras = new TelaCadastroMateriais();

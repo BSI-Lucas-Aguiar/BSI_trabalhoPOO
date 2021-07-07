@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import persistencia.FabricaConexao;
 
 public class Projeto {
@@ -55,6 +57,42 @@ public class Projeto {
 		return null;
 	}
 	
+	public void alterarProjeto() {
+		try {
+			Connection conexao = FabricaConexao.getConexao();
+			Statement alterarProj = conexao.createStatement();
+			System.out.println("Conexão com o BD realizada para alteração realizada!");
+			
+			alterarProj.execute("USE estaleiro_naval;");
+			alterarProj.execute("UPDATE lancha SET valorEmbarcacao ='"+this.getValorEmbarcacao()+"', quantidadeMaterial = '"+this.getQuantidadeMaterial()+"' WHERE codigoProjeto = '" +this.getCodigoProjeto()+"'");
+			
+			JOptionPane.showMessageDialog(null, "Dados do Projeto "+this.getCodigoProjeto()+" alterados!");
+			conexao.close();
+			System.out.println("Conexão para alteração finalizada!");
+			
+		} catch (Exception e1) {
+			System.err.println("Erro na alteração."+e1);
+		}
+	}
+	
+	public void deletarProjeto() {
+		try {
+			Connection conexao = FabricaConexao.getConexao();
+			Statement deletarProj = conexao.createStatement();
+			System.out.println("Conexão com o BD realizada para exclusão de projeto.");
+			
+			deletarProj.execute("USE estaleiro_naval;");
+			deletarProj.execute("DELETE FROM lancha WHERE codigoProjeto ='" +this.getCodigoProjeto()+"'");
+			
+			conexao.close();
+			System.out.println("Conexão para exclusão de projeto");
+			
+		} catch (Exception e1) {
+			System.err.println("Erro na exclusão"+e1);
+		}
+	}
+	
+	
 	//Sets e Gets
 	public String getCodigoProjeto() {
 		return codigoProjeto;
@@ -92,6 +130,7 @@ public class Projeto {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
 	
 	
 }
