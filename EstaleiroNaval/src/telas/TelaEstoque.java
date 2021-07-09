@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import estaleiroNaval.Caixa;
+import estaleiroNaval.Compra;
+import estaleiroNaval.Estoque;
+import persistencia.FabricaConexao;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,6 +23,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -83,11 +89,44 @@ public class TelaEstoque extends JFrame {
 		labelEstoque.setBounds(0, 21, 584, 36);
 		panel.add(labelEstoque);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(25, 259, 224, 91);
-		panel.add(textArea);
+		JTextArea textAreaCompra = new JTextArea();
+		textAreaCompra.setBounds(25, 259, 224, 91);
+		panel.add(textAreaCompra);
 		
 		JButton botaoListarMateriais = new JButton("Listar Materiais");
+		botaoListarMateriais.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+	                //Conexão da FabricaConexao
+					Connection conexao = FabricaConexao.getConexao();
+					System.out.println("Conexão com o BD para listar funcionários!");
+
+	                Compra compra = new Compra();
+	                
+	                //Pega os materiais e forma um arraylist
+	                ArrayList<Compra> listaCompra = compra.listarCompra();
+
+	                if(listaCompra != null) {
+	                	textAreaCompra.setText("");
+	                    for(Compra c: listaCompra) {
+	                    	textAreaCompra.setText(textAreaCompra.getText()+ c.getNomeMaterial()+" | "+ c.getPrecoMaterial()+"\n");
+
+	                    }
+	                }
+	                
+	                JOptionPane.showMessageDialog(null, "Lista de Materiais Atualizada!");
+	                conexao.close();
+	                System.out.println("Conexão para listar funcionários finalizada!");
+
+	            }
+	            catch (SQLException ex) {
+	                System.err.println("Erro na conexão do BD: "+ex.getMessage());
+	            }
+	            catch (Exception ex) {
+	                System.err.println("Erro geral: "+ex.getMessage());
+	            }
+			}
+		});
 		botaoListarMateriais.setBounds(51, 225, 171, 23);
 		panel.add(botaoListarMateriais);
 		
@@ -114,6 +153,11 @@ public class TelaEstoque extends JFrame {
 		panel.add(labelQuantidadeDeMaterial);
 		
 		JButton botaoComprarMaterial = new JButton("Comprar Material");
+		botaoComprarMaterial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		botaoComprarMaterial.setBounds(367, 182, 160, 23);
 		panel.add(botaoComprarMaterial);
 		
@@ -144,6 +188,7 @@ public class TelaEstoque extends JFrame {
 		JButton botaoAtualizar = new JButton("Atualizar");
 		botaoAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Atualizar Saldo em Caixa
 				try {
 	                //Pegar o valor do BD
 	                Caixa caixa = new Caixa();
@@ -158,6 +203,19 @@ public class TelaEstoque extends JFrame {
 	            catch (Exception ex) {
 	                System.err.println("Erro geral: "+ex.getMessage());
 	            }
+				//Atualizar Quantidade de material
+				try {
+					Estoque estoque = new Estoque();
+					
+					String totalEstoque;
+					totalEstoque = Integer.toString(estoque.listarEstoque());
+					
+					textoMaterialEmEstoque.setText(totalEstoque);
+					
+				} 
+				catch (Exception e1) {
+					System.err.println("Erro na listagem de estoque."+e1);
+				}
 			}
 		});
 		botaoAtualizar.setBounds(160, 168, 89, 23);

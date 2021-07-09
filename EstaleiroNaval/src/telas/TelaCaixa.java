@@ -96,6 +96,11 @@ public class TelaCaixa extends JFrame {
 		panel.add(textArea);
 		
 		JButton botaoListarProjetos = new JButton("Listar Projetos");
+		botaoListarProjetos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Alterar o design para JTable
+			}
+		});
 		botaoListarProjetos.setBounds(347, 46, 156, 23);
 		panel.add(botaoListarProjetos);
 		

@@ -149,7 +149,7 @@ public class TelaCadastroMateriais extends JFrame {
 					conexao.close();
 					System.out.println("Conexão para cadastro finalizada!");
 					
-					JOptionPane.showMessageDialog(null, "Material removido do BD!");
+					JOptionPane.showMessageDialog(null, "Material cadastrado no BD!");
 					
 				} catch (Exception e1) {
 					
