@@ -77,25 +77,6 @@ public class TelaProjeto extends JFrame {
 		
 		tabelaProjetos = new JTable();
 		tabelaProjetos.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		tabelaProjetos.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"C\u00F3digo Proj", "Material Necess\u00E1rio", "Utilizado", "Vendido?", "Valor de Venda", "Tipo"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		tabelaProjetos.getColumnModel().getColumn(0).setPreferredWidth(125);
-		tabelaProjetos.getColumnModel().getColumn(1).setPreferredWidth(125);
-		tabelaProjetos.getColumnModel().getColumn(2).setPreferredWidth(100);
-		tabelaProjetos.getColumnModel().getColumn(4).setPreferredWidth(100);
-		
 		scrollPane.setViewportView(tabelaProjetos);
 		
 		

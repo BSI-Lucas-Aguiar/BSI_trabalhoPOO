@@ -8,28 +8,19 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import persistencia.FabricaConexao;
-
 import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
 import estaleiroNaval.Caixa;
-import estaleiroNaval.Funcionario;
 import estaleiroNaval.Projeto;
 
 import javax.swing.JScrollPane;

@@ -111,7 +111,7 @@ public class TelaPrincipal extends JFrame {
 		
 		//Janela do caixa
 		//********************************************************************************************************
-		JMenuItem menuCaixaTotalCaixa = new JMenuItem("Total em Caixa");
+		JMenuItem menuCaixaTotalCaixa = new JMenuItem("Administra\u00E7\u00E3o de Caixa");
 		menuCaixaTotalCaixa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaCaixa telaCaixa = new TelaCaixa();
@@ -131,26 +131,40 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(painel, BorderLayout.CENTER);
 		painel.setLayout(null);
 		
-		JLabel labelMain = new JLabel("ESTALEIRO NAVAL");
-		labelMain.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMain.setBackground(new Color(0, 0, 0));
-		labelMain.setForeground(new Color(0, 51, 102));
-		labelMain.setFont(new Font("Verdana", Font.BOLD, 50));
-		labelMain.setBounds(0, 29, 784, 49);
-		painel.add(labelMain);
+		JLabel labelGerenciamento = new JLabel("GERENCIAMENTO DE");
+		labelGerenciamento.setHorizontalAlignment(SwingConstants.CENTER);
+		labelGerenciamento.setBackground(new Color(0, 0, 0));
+		labelGerenciamento.setForeground(Color.BLACK);
+		labelGerenciamento.setFont(new Font("Malgun Gothic", Font.BOLD, 45));
+		labelGerenciamento.setBounds(0, 351, 784, 54);
+		painel.add(labelGerenciamento);
+		
+		JLabel lblEstaleiroNaval = new JLabel("ESTALEIRO NAVAL");
+		lblEstaleiroNaval.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEstaleiroNaval.setForeground(Color.BLACK);
+		lblEstaleiroNaval.setFont(new Font("Malgun Gothic", Font.BOLD, 45));
+		lblEstaleiroNaval.setBackground(Color.BLACK);
+		lblEstaleiroNaval.setBounds(0, 397, 784, 54);
+		painel.add(lblEstaleiroNaval);
+		
+		JLabel labelBarquinho = new JLabel("");
+		labelBarquinho.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagens/icone_timao.png")));
+		labelBarquinho.setBounds(498, -255, 621, 568);
+		painel.add(labelBarquinho);
 		
 		//Label com meu instagram
 		//********************************************************************************************************
 		JLabel labelCriador = new JLabel("CRIADO POR: @LUCASSENDRAK");
-		labelCriador.setForeground(Color.RED);
-		labelCriador.setFont(new Font("Unispace", Font.BOLD, 30));
-		labelCriador.setBounds(0, 502, 459, 37);
+		labelCriador.setHorizontalAlignment(SwingConstants.CENTER);
+		labelCriador.setForeground(Color.WHITE);
+		labelCriador.setFont(new Font("Malgun Gothic", Font.BOLD, 30));
+		labelCriador.setBounds(0, 491, 784, 37);
 		painel.add(labelCriador);
 		
 		//Imagem de Fundo
 		//********************************************************************************************************
 		JLabel labelFundoMain = new JLabel("imagemMain");
-		labelFundoMain.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagens/imagemMainEstaleiro.jpg")));
+		labelFundoMain.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagens/estaleiro_naval_principal.png")));
 		labelFundoMain.setBounds(0, 0, 784, 539);
 		painel.add(labelFundoMain);
 	}
