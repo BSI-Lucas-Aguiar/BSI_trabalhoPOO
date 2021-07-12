@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import estaleiroNaval.Funcionario;
+import estaleiroNaval.Projeto;
 import persistencia.FabricaConexao;
 
 import javax.swing.JButton;
@@ -24,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 import java.awt.Font;
+import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class TelaFuncionarios extends JFrame {
@@ -31,7 +33,6 @@ public class TelaFuncionarios extends JFrame {
 	private JPanel contentPane;
 	private JTextField textoNome;
 	private JTextField textoCargo;
-	private JTextField textoProjeto;
 
 	//Iniciar a Tela
 	//********************************************************************************************************
@@ -69,6 +70,18 @@ public class TelaFuncionarios extends JFrame {
 		textAreaFuncionarios.setEditable(false);
 		textAreaFuncionarios.setBounds(10, 99, 243, 351);
 		panel.add(textAreaFuncionarios);
+		
+		//Combo Box Lista de Projetos
+		//********************************************************************************************************
+		JComboBox<Object> comboBoxProjetos = new JComboBox<>();
+		comboBoxProjetos.setBounds(276, 223, 360, 22);
+		panel.add(comboBoxProjetos);
+		Projeto proj = new Projeto();
+		ArrayList<Projeto> listaProj = proj.listarProjetos();
+		for(Projeto p:listaProj) {
+			comboBoxProjetos.addItem(p.getCodigoProjeto());
+		}
+		
 		
 		//Função de Listar os Funcionários
 		//********************************************************************************************************
@@ -119,11 +132,6 @@ public class TelaFuncionarios extends JFrame {
 		panel.add(textoCargo);
 		textoCargo.setColumns(10);
 		
-		textoProjeto = new JTextField();
-		textoProjeto.setBounds(276, 223, 360, 20);
-		panel.add(textoProjeto);
-		textoProjeto.setColumns(10);
-		
 		JLabel labelNome = new JLabel("Nome");
 		labelNome.setLabelFor(textoNome);
 		labelNome.setHorizontalAlignment(SwingConstants.CENTER);
@@ -137,7 +145,7 @@ public class TelaFuncionarios extends JFrame {
 		panel.add(labelCargo);
 		
 		JLabel labelProjeto = new JLabel("Projeto");
-		labelProjeto.setLabelFor(textoProjeto);
+		labelProjeto.setLabelFor(comboBoxProjetos);
 		labelProjeto.setHorizontalAlignment(SwingConstants.CENTER);
 		labelProjeto.setBounds(433, 198, 46, 14);
 		panel.add(labelProjeto);
@@ -154,7 +162,7 @@ public class TelaFuncionarios extends JFrame {
 					System.out.println("Conexão com o BD realizada para cadastro!");
 					
 					cadastrarFuncionario.execute("USE estaleiro_naval;");
-					cadastrarFuncionario.execute("INSERT INTO funcionario(nome, cargo, projetoAtual) VALUES ('"+textoNome.getText()+"','"+textoCargo.getText()+"','"+textoProjeto.getText()+"');");
+					cadastrarFuncionario.execute("INSERT INTO funcionario(nome, cargo, projetoAtual) VALUES ('"+textoNome.getText()+"','"+textoCargo.getText()+"','"+comboBoxProjetos.getSelectedItem()+"');");
 					
 					conexao.close();
 					System.out.println("Conexão para cadastro finalizada!");
@@ -179,7 +187,7 @@ public class TelaFuncionarios extends JFrame {
 				
 				demissao.setNome(textoNome.getText());
 				demissao.setCargo(textoCargo.getText());
-				demissao.setProjetoAtual(textoProjeto.getText());
+				demissao.setProjetoAtual((String)comboBoxProjetos.getSelectedItem());
 				
 				demissao.demitirFuncionario();
 				
@@ -198,7 +206,7 @@ public class TelaFuncionarios extends JFrame {
 				
 				alterar.setNome(textoNome.getText());
 				alterar.setCargo(textoCargo.getText());
-				alterar.setProjetoAtual(textoProjeto.getText());
+				alterar.setProjetoAtual((String)comboBoxProjetos.getSelectedItem());
 				
 				alterar.alterarDados();
 				
@@ -217,5 +225,6 @@ public class TelaFuncionarios extends JFrame {
 		labelFuncionarios.setHorizontalAlignment(SwingConstants.CENTER);
 		labelFuncionarios.setBounds(0, 11, 684, 32);
 		panel.add(labelFuncionarios);
+		
 	}
 }

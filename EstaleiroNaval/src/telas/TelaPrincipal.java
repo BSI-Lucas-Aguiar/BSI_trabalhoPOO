@@ -10,11 +10,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.SwingConstants;
@@ -43,7 +47,6 @@ public class TelaPrincipal extends JFrame {
 	public TelaPrincipal() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaPrincipal.class.getResource("/imagens/icone_estaleiro.png")));
 		setTitle("Gerenciamento de Estaleiro Naval");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		setResizable(false);
 		setLocationRelativeTo(null); //Centralizar a Janela
@@ -167,5 +170,24 @@ public class TelaPrincipal extends JFrame {
 		labelFundoMain.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imagens/estaleiro_naval_principal.png")));
 		labelFundoMain.setBounds(0, 0, 784, 539);
 		painel.add(labelFundoMain);
+		
+		//Confirmação de fechar programa
+		//********************************************************************************************************
+		addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int sair = JOptionPane.showConfirmDialog(contentPane, 
+                        "Tem certeza que deseja encerrar o Sistema?", "Atenção!!!", 
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                
+                if(sair == JOptionPane.YES_OPTION){
+                	System.out.println("Aplicação Finalizada, obrigado por utilizar!");
+                    System.exit(0);
+                }else {
+                    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                }
+            }
+        });
 	}
 }
