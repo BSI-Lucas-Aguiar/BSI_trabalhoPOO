@@ -35,10 +35,9 @@ public class TelaProjeto extends JFrame {
 	private JTextField textoQuantidadeMaterial;
 	private JTextField textoValorEmbarcacao;
 	private JTable tabelaProjetos;
-
-	/**
-	 * Launch the application.
-	 */
+	
+	//Inicia a Janela
+	//********************************************************************************************************
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -51,12 +50,9 @@ public class TelaProjeto extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
 	
 	public TelaProjeto() {
+	
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaProjeto.class.getResource("/imagens/icone_estaleiro.png")));
 		setTitle("Controle de Projetos");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -77,7 +73,8 @@ public class TelaProjeto extends JFrame {
 		tabelaProjetos.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		scrollPane.setViewportView(tabelaProjetos);
 		
-		
+		//Botão Listar Projetos
+		//********************************************************************************************************
 		JButton botaoListarProjetos = new JButton("Listar Projetos");
 		botaoListarProjetos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -127,6 +124,8 @@ public class TelaProjeto extends JFrame {
 		contentPane.add(textoValorEmbarcacao);
 		textoValorEmbarcacao.setColumns(10);
 		
+		//Combo Box Tipo de Projeto - Atualmente apenas um implementado
+		//********************************************************************************************************
 		JComboBox <Object> comboBoxTipoEmbarcacao = new JComboBox<>();
 		comboBoxTipoEmbarcacao.setModel(new DefaultComboBoxModel<>(new String[] {"Lancha"}));
 		comboBoxTipoEmbarcacao.setBounds(10, 149, 150, 22);
@@ -162,6 +161,8 @@ public class TelaProjeto extends JFrame {
 		labelTipoEmbarcacao.setBounds(10, 124, 150, 14);
 		contentPane.add(labelTipoEmbarcacao);
 		
+		//Botão Cadastrar Projeto
+		//********************************************************************************************************
 		JButton botaoCadastrarProjeto = new JButton("Cadastrar Projeto");
 		botaoCadastrarProjeto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -179,13 +180,15 @@ public class TelaProjeto extends JFrame {
 					JOptionPane.showMessageDialog(null, "Projeto cadastrado!");
 					
 				} catch (Exception e1) {
-					System.err.println("Erro no Cadastro de Projeto"+e1);
+					System.err.println("Erro no Cadastro de Projeto. "+e1);
 				}
 			}
 		});
 		botaoCadastrarProjeto.setBounds(415, 123, 150, 23);
 		contentPane.add(botaoCadastrarProjeto);
 		
+		//Botão Alterar Projeto
+		//********************************************************************************************************
 		JButton botaoAlterarProjeto = new JButton("Alterar Projeto");
 		botaoAlterarProjeto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -201,6 +204,8 @@ public class TelaProjeto extends JFrame {
 		botaoAlterarProjeto.setBounds(415, 149, 150, 23);
 		contentPane.add(botaoAlterarProjeto);
 		
+		//Botão Deletar Projeto
+		//********************************************************************************************************
 		JButton botaoDeletarProjeto = new JButton("Deletar Projeto");
 		botaoDeletarProjeto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

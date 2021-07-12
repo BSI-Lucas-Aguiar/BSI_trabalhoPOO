@@ -38,7 +38,9 @@ public class TelaEstoque extends JFrame {
 	private JTextField textoQuantidadeMaterial;
 	private JTextField textoMaterialEmEstoque;
 	private JTextField textoSaldoCaixa;
-
+	
+	//Iniciar a Tela
+	//********************************************************************************************************
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -121,6 +123,8 @@ public class TelaEstoque extends JFrame {
 		textAreaCompra.setBounds(25, 259, 224, 91);
 		panel.add(textAreaCompra);
 		
+		//Botão Listar Materiais
+		//********************************************************************************************************
 		JButton botaoListarMateriais = new JButton("Listar Materiais");
 		botaoListarMateriais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -180,6 +184,9 @@ public class TelaEstoque extends JFrame {
 		labelQuantidadeDeMaterial.setBounds(384, 129, 126, 14);
 		panel.add(labelQuantidadeDeMaterial);
 		
+		
+		//Botão Comprar Material
+		//********************************************************************************************************
 		JButton botaoComprarMaterial = new JButton("Comprar Material");
 		botaoComprarMaterial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -219,6 +226,8 @@ public class TelaEstoque extends JFrame {
 		textoSaldoCaixa.setBounds(152, 126, 97, 20);
 		panel.add(textoSaldoCaixa);
 		
+		//Botão Atualizar dados
+		//********************************************************************************************************
 		JButton botaoAtualizar = new JButton("Atualizar");
 		botaoAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

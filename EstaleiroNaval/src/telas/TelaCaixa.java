@@ -33,7 +33,9 @@ public class TelaCaixa extends JFrame {
 	private JTextField textoNomeProjeto;
 	private JTextField textoSaldoCaixa;
 	private JTable tabelaProjetos;
-
+	
+	//Iniciar a tela
+	//********************************************************************************************************
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -71,7 +73,6 @@ public class TelaCaixa extends JFrame {
 				try {
 	                //Pegar o valor do BD
 	                Caixa caixa = new Caixa();
-	                
 	                String totalCaixa;
 	                totalCaixa = Double.toString(caixa.consultarTotal());
 	                
@@ -80,13 +81,15 @@ public class TelaCaixa extends JFrame {
 	                JOptionPane.showMessageDialog(null, "Saldo Atualizado!");
 				}
 	            catch (Exception ex) {
-	                System.err.println("Erro geral: "+ex.getMessage());
+	                System.err.println("Erro no botão Saldo em Caixa: "+ex.getMessage());
 	            }
 			}
 		});
 		botaoSaldoEmCaixa.setBounds(60, 106, 143, 23);
 		panel.add(botaoSaldoEmCaixa);
 		
+		//Botão Listar Projetos
+		//********************************************************************************************************
 		JButton botaoListarProjetos = new JButton("Listar Projetos");
 		botaoListarProjetos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -132,6 +135,8 @@ public class TelaCaixa extends JFrame {
 		panel.add(textoNomeProjeto);
 		textoNomeProjeto.setColumns(10);
 		
+		//Botão Vender Projeto
+		//********************************************************************************************************
 		JButton botaoVenderProjeto = new JButton("Vender Projeto");
 		botaoVenderProjeto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

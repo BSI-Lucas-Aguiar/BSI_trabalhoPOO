@@ -38,7 +38,6 @@ public class Funcionario {
 				fun.setProjetoAtual(resultado.getString("projetoAtual"));
 				
 				listaFuncionario.add(fun);
-				
 			}
 			
 			conexao.close();
@@ -84,14 +83,14 @@ public class Funcionario {
 		try {
 			Connection conexao = FabricaConexao.getConexao();
 			Statement alterarFun = conexao.createStatement();
-			System.out.println("Conexão com o BD realizada para alteração realizada!");
+			System.out.println("Conexão com o BD realizada para alteração de funcionário realizada!");
 			
 			alterarFun.execute("USE estaleiro_naval;");
 			alterarFun.execute("UPDATE funcionario SET cargo ='"+this.getCargo()+"', projetoAtual = '"+this.getProjetoAtual()+"' WHERE nome = '" +this.getNome()+"'");
 			
 			JOptionPane.showMessageDialog(null, "Dados do funcionário "+this.getNome()+" alterados!");
 			conexao.close();
-			System.out.println("Conexão para alteração finalizada!");
+			System.out.println("Conexão para alteração de funcionário finalizada!");
 			
 		} catch (Exception e1) {
 			

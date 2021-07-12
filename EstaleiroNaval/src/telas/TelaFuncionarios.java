@@ -109,7 +109,6 @@ public class TelaFuncionarios extends JFrame {
 		botaoListarFuncionarios.setBounds(48, 65, 162, 23);
 		panel.add(botaoListarFuncionarios);
 		
-		
 		textoNome = new JTextField();
 		textoNome.setBounds(276, 100, 360, 20);
 		panel.add(textoNome);
@@ -163,7 +162,7 @@ public class TelaFuncionarios extends JFrame {
 					JOptionPane.showMessageDialog(null, "Funcionário cadastrado!");
 					
 				} catch (Exception e1) {
-					System.err.println("Erro no cadastro de funcionário"+ e1);
+					System.err.println("Erro no cadastro de funcionário. "+ e1);
 				}
 				
 			}

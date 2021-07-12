@@ -28,17 +28,16 @@ public class Compra {
 		try {
 			Connection conexao = FabricaConexao.getConexao();
 			Statement removerMat = conexao.createStatement();
-			System.out.println("Conexão com o BD realizada para remoção de material!");
+			System.out.println("Conexão com o BD para Remoção de Material realizada!");
 			
 			removerMat.execute("USE estaleiro_naval;");
 			removerMat.execute("DELETE FROM compra WHERE nomeMaterial ='" +this.getNomeMaterial()+"'");
 			
 			conexao.close();
-			System.out.println("Conexão para remoção de material finalizada!");
+			System.out.println("Conexão para Remoção de Material finalizada!");
 			
 		} catch (Exception e1) {
-			
-			e1.printStackTrace();
+			System.err.println("Erro na função remover material - Classe Compra. "+e1);
 		}
 	}
 	
@@ -48,7 +47,7 @@ public class Compra {
 		try {
 			Connection conexao = FabricaConexao.getConexao();
 			Statement stmt = conexao.createStatement();
-			System.out.println("Conexão com o BD realizada para listagem de materiais!");
+			System.out.println("Conexão com o BD realizada para Listagem de Materiais!");
 			
 			String queryListarCompras = "SELECT * FROM estaleiro_naval.compra";
 			
@@ -61,19 +60,17 @@ public class Compra {
 				
 				comp.setNomeMaterial(resultado.getString("nomeMaterial"));
 				comp.setPrecoMaterial(resultado.getString("precoMaterial"));
-				
 				listaCompra.add(comp);
 				
 			}
 			
 			conexao.close();
-			System.out.println("Conexão para listagem de materiais finalizada!");
+			System.out.println("Conexão para Listagem de Materiais finalizada!");
 			
 			return listaCompra;
 			
 		} catch (Exception e1) {
-			
-			e1.printStackTrace();
+			System.err.println("Erro na função Listar Compra - Classe Compra. "+e1);
 		}
 		
 		return null;
@@ -95,8 +92,7 @@ public class Compra {
 			System.out.println("Conexão para alteração de material finalizada!");
 			
 		} catch (Exception e1) {
-			
-			e1.printStackTrace();
+			System.err.println("Erro na função Alterar Dados - Classe Compra: "+e1);
 		}
 		
 	}
@@ -114,11 +110,4 @@ public class Compra {
 	public void setPrecoMaterial(String precoMaterial) {
 		this.precoMaterial = precoMaterial;
 	}
-
-	
-
-	
-	
-	
-	
 }

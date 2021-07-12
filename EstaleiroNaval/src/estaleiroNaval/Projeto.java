@@ -18,11 +18,13 @@ public class Projeto {
 	private double valorEmbarcacao;
 	private String tipo;
 	
+	//Função Listar Projeto
+	//********************************************************************************************************
 	public ArrayList<Projeto> listarProjetos() {
 		try {
 			Connection conexao = FabricaConexao.getConexao();
 			Statement stmt = conexao.createStatement();
-			System.out.println("Conexão com o BD realizada para cadastro de Projeto!");
+			System.out.println("Conexão com o BD realizada para listagem de Projeto!");
 			
 			String queryListarProjeto = "SELECT * FROM estaleiro_naval.lancha";
 			
@@ -57,38 +59,42 @@ public class Projeto {
 		return null;
 	}
 	
+	//Função Alterar Projeto
+	//********************************************************************************************************
 	public void alterarProjeto() {
 		try {
 			Connection conexao = FabricaConexao.getConexao();
 			Statement alterarProj = conexao.createStatement();
-			System.out.println("Conexão com o BD realizada para alteração realizada!");
+			System.out.println("Conexão com o BD realizada para alteração de projeto realizada!");
 			
 			alterarProj.execute("USE estaleiro_naval;");
 			alterarProj.execute("UPDATE lancha SET valorEmbarcacao ='"+this.getValorEmbarcacao()+"', quantidadeMaterial = '"+this.getQuantidadeMaterial()+"' WHERE codigoProjeto = '" +this.getCodigoProjeto()+"'");
 			
 			JOptionPane.showMessageDialog(null, "Dados do Projeto "+this.getCodigoProjeto()+" alterados!");
 			conexao.close();
-			System.out.println("Conexão para alteração finalizada!");
+			System.out.println("Conexão para alteração de projeto finalizada!");
 			
 		} catch (Exception e1) {
-			System.err.println("Erro na alteração."+e1);
+			System.err.println("Erro função Alterar Projeto - Classe Projeto. "+e1);
 		}
 	}
 	
+	//Função Deletar Projeto
+	//********************************************************************************************************
 	public void deletarProjeto() {
 		try {
 			Connection conexao = FabricaConexao.getConexao();
 			Statement deletarProj = conexao.createStatement();
-			System.out.println("Conexão com o BD realizada para exclusão de projeto.");
+			System.out.println("Conexão com o BD realizada para exclusão de projeto!");
 			
 			deletarProj.execute("USE estaleiro_naval;");
 			deletarProj.execute("DELETE FROM lancha WHERE codigoProjeto ='" +this.getCodigoProjeto()+"'");
 			
 			conexao.close();
-			System.out.println("Conexão para exclusão de projeto");
+			System.out.println("Conexão para exclusão de projeto finalizada!");
 			
 		} catch (Exception e1) {
-			System.err.println("Erro na exclusão"+e1);
+			System.err.println("Erro na função deletar Projeto - Classe Projeto. "+e1);
 		}
 	}
 	

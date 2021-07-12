@@ -12,11 +12,13 @@ import persistencia.FabricaConexao;
 public class Estoque {
 	private int estoqueMaterial;
 	
+	//Função Listar Estoque
+	//********************************************************************************************************
 	public int listarEstoque() {
 		try {
 			Connection conexao = FabricaConexao.getConexao();
 			Statement totalEstoque = conexao.createStatement();
-			System.out.println("Conexão com o BD realizada para consultar estoque!");
+			System.out.println("Conexão com o BD realizada para Consultar Estoque!");
 			
 			String queryListarEstoque = "SELECT * FROM estaleiro_naval.estoque";
 			
@@ -29,43 +31,43 @@ public class Estoque {
 			}
 			
 			conexao.close();
-			System.out.println("Conexão para listar estoque finalizada!");
+			System.out.println("Conexão para Consultar Estoque finalizada!");
 			
 			return total;
 			
 		} catch (Exception e1) {
-			System.err.println("Erro na busca pelo total: "+e1);
+			System.err.println("Erro na função Listar Estoque - Classe Estoque. "+e1);
 		}
-		
 		
 		return 0;
 	}
 	
+	//Retirar Material
+	//********************************************************************************************************
 	public void retirarMaterial(int qtdMaterial, String projeto) {
 		try {
 			Connection conexao = FabricaConexao.getConexao();
 			Statement stmt = conexao.createStatement();
-			System.out.println("Conexão com o BD realizada para consultar saldo!");
+			System.out.println("Conexão com o BD reatirar material!");
 						
 			stmt.executeUpdate("UPDATE estaleiro_naval.lancha SET materialUtilizado = materialUtilizado + '"+qtdMaterial+"'WHERE codigoProjeto = '"+projeto+"';");
 			
-			
-			
 			conexao.close();
-			System.out.println("Conexão para alteração de material!");
+			System.out.println("Conexão para retirar material finalizada!");
 			
 		} catch (SQLException e) {
 			System.err.println("Erro na hora de Retirar do Estoque / Adicionar no Projeto " +e);
 		}
-		
 	}
 	
+	//Função Comprar Material
+	//********************************************************************************************************
 	public void comprarMaterial(String nomeMaterialBD, int quantidadeMaterial) {
 		try {
 			//Verificação do Saldo em caixa
 			Connection conexao = FabricaConexao.getConexao();
 			Statement stmt = conexao.createStatement();
-			System.out.println("Conexão com o BD realizada para consultar saldo!");
+			System.out.println("Conexão com o BD para comprar material realizada!");
 			
 			String queryListarSaldo = "SELECT * FROM estaleiro_naval.caixa";
 			
@@ -79,10 +81,8 @@ public class Estoque {
 			
 			//Verificação do Preço
 			Statement precoMaterial = conexao.createStatement();
-			System.out.println("Conexão com o BD realizada para consultar saldo!");
 			
 			String queryListarPrecoMaterial = "SELECT * FROM estaleiro_naval.compra precoMaterial WHERE nomeMaterial = '"+nomeMaterialBD+"';";
-			
 			ResultSet resultado2 = precoMaterial.executeQuery(queryListarPrecoMaterial);
 			
 			double precoMaterialBD = 0;
@@ -112,10 +112,10 @@ public class Estoque {
 			}
 			
 			conexao.close();
-			System.out.println("Conexão para consulta de saldo e preço finalizada!");
+			System.out.println("Conexão para comprar material realizada!");
 			
 		} catch (Exception e1) {
-			System.err.println("Falhou aqui na classe Estoque - Comprar Material. "+e1);
+			System.err.println("Falhou na função comprar material - Classe Estoque "+e1);
 		}
 		
 	}

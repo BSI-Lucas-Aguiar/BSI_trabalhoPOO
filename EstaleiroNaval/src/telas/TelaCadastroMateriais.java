@@ -96,10 +96,10 @@ public class TelaCadastroMateriais extends JFrame {
 
 	            }
 	            catch (SQLException ex) {
-	                System.err.println("Erro na conexão do BD: "+ex.getMessage());
+	                System.err.println("Erro na conexão do BD Listar Materiais: "+ex.getMessage());
 	            }
 	            catch (Exception ex) {
-	                System.err.println("Erro geral: "+ex.getMessage());
+	                System.err.println("Erro Listar Materiais: "+ex.getMessage());
 	            }
 			}
 		});

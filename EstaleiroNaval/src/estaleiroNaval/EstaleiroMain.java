@@ -13,9 +13,7 @@ import telas.TelaPrincipal;
  * Caso vá utilizar parcialmente ou totalmente meus códigos pelo menos me dê um follow no instagram @lucassendrak
  */
 
-
 public class EstaleiroMain {
-
 
 	public static void main(String[] args) throws SQLException { //Verificar a senha root na classe CriarBD no pacote persistencia
 		
@@ -26,10 +24,7 @@ public class EstaleiroMain {
 		TelaPrincipal tela = new TelaPrincipal();
 		tela.setVisible(true);
 		System.out.println("Aplicação Iniciada!");
-		
-		
-		
-		
+				
 	}
 
 }
