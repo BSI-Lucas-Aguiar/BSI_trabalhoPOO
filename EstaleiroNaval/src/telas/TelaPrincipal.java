@@ -135,14 +135,14 @@ public class TelaPrincipal extends JFrame {
 		labelGerenciamento.setHorizontalAlignment(SwingConstants.CENTER);
 		labelGerenciamento.setBackground(new Color(0, 0, 0));
 		labelGerenciamento.setForeground(Color.BLACK);
-		labelGerenciamento.setFont(new Font("Malgun Gothic", Font.BOLD, 45));
+		labelGerenciamento.setFont(new Font("Impact", Font.BOLD, 45));
 		labelGerenciamento.setBounds(0, 351, 784, 54);
 		painel.add(labelGerenciamento);
 		
 		JLabel lblEstaleiroNaval = new JLabel("ESTALEIRO NAVAL");
 		lblEstaleiroNaval.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEstaleiroNaval.setForeground(Color.BLACK);
-		lblEstaleiroNaval.setFont(new Font("Malgun Gothic", Font.BOLD, 45));
+		lblEstaleiroNaval.setFont(new Font("Impact", Font.BOLD, 45));
 		lblEstaleiroNaval.setBackground(Color.BLACK);
 		lblEstaleiroNaval.setBounds(0, 397, 784, 54);
 		painel.add(lblEstaleiroNaval);
@@ -155,10 +155,10 @@ public class TelaPrincipal extends JFrame {
 		//Label com meu instagram
 		//********************************************************************************************************
 		JLabel labelCriador = new JLabel("CRIADO POR: @LUCASSENDRAK");
-		labelCriador.setHorizontalAlignment(SwingConstants.CENTER);
+		labelCriador.setHorizontalAlignment(SwingConstants.LEFT);
 		labelCriador.setForeground(Color.WHITE);
 		labelCriador.setFont(new Font("Malgun Gothic", Font.BOLD, 30));
-		labelCriador.setBounds(0, 491, 784, 37);
+		labelCriador.setBounds(10, 491, 784, 37);
 		painel.add(labelCriador);
 		
 		//Imagem de Fundo

@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import estaleiroNaval.Caixa;
 import estaleiroNaval.Compra;
 import estaleiroNaval.Estoque;
+import estaleiroNaval.Projeto;
 import persistencia.FabricaConexao;
 
 import javax.swing.JLabel;
@@ -27,14 +28,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class TelaEstoque extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textoRetirarMaterial;
-	private JTextField textoNome;
-	private JTextField textoQuantidade;
+	private JTextField textoNomeMaterial;
+	private JTextField textoQuantidadeMaterial;
 	private JTextField textoMaterialEmEstoque;
 	private JTextField textoSaldoCaixa;
 
@@ -67,20 +68,47 @@ public class TelaEstoque extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		textoRetirarMaterial = new JTextField();
-		textoRetirarMaterial.setToolTipText("Quantidade de material a ser retirada do estoque;");
-		textoRetirarMaterial.setHorizontalAlignment(SwingConstants.LEFT);
-		textoRetirarMaterial.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textoRetirarMaterial.setForeground(Color.BLACK);
-		textoRetirarMaterial.setColumns(10);
-		textoRetirarMaterial.setBounds(367, 239, 160, 25);
-		panel.add(textoRetirarMaterial);
+		//Combo Box - Lista de Projetos
+		JLabel labelProjeto = new JLabel("Projeto Selecionado");
+		labelProjeto.setHorizontalAlignment(SwingConstants.CENTER);
+		labelProjeto.setBounds(367, 229, 160, 14);
+		panel.add(labelProjeto);
+		
+		JComboBox <Object> comboBoxProjetos = new JComboBox<>();
+		comboBoxProjetos.setBounds(367, 260, 160, 22);
+		panel.add(comboBoxProjetos);
+		Projeto proj = new Projeto();
+		ArrayList<Projeto> listaProj = proj.listarProjetos();
+		for(Projeto p:listaProj) {
+			comboBoxProjetos.addItem(p.getCodigoProjeto());
+		}
 		
 		//Botão Retirar material
 		//********************************************************************************************************
-		JButton botaoRetirarMaterial = new JButton("Retirar Material");
-		botaoRetirarMaterial.setBounds(367, 275, 160, 55);
-		panel.add(botaoRetirarMaterial);
+		JButton botaoUtilizarMaterial = new JButton("Utilizar Material");
+		botaoUtilizarMaterial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String projeto = (String)comboBoxProjetos.getSelectedItem();
+				
+				//Buscando a quantidade de material em estoque
+				Estoque estoqueMat = new Estoque();
+				int totalEstoque;
+				totalEstoque = (estoqueMat.listarEstoque());
+				
+				//Pergunta de material
+				int qtdMaterial = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de material que será colocada no: "+projeto+"\nTotal em estoque: "+totalEstoque));
+				
+				//Verificar quantidade no estoque
+				if(totalEstoque >= qtdMaterial) {
+					Estoque estoque = new Estoque();
+					estoque.retirarMaterial(qtdMaterial, projeto);
+				}else {
+					JOptionPane.showMessageDialog(null, "Não há material suficiente no estoque.");
+				}
+			}
+		});
+		botaoUtilizarMaterial.setBounds(367, 304, 160, 29);
+		panel.add(botaoUtilizarMaterial);
 		
 		JLabel labelEstoque = new JLabel("ESTOQUE DE MATERIAIS");
 		labelEstoque.setHorizontalAlignment(SwingConstants.CENTER);
@@ -130,24 +158,24 @@ public class TelaEstoque extends JFrame {
 		botaoListarMateriais.setBounds(51, 225, 171, 23);
 		panel.add(botaoListarMateriais);
 		
-		textoNome = new JTextField();
-		textoNome.setBounds(367, 98, 160, 20);
-		panel.add(textoNome);
-		textoNome.setColumns(10);
+		textoNomeMaterial = new JTextField();
+		textoNomeMaterial.setBounds(367, 98, 160, 20);
+		panel.add(textoNomeMaterial);
+		textoNomeMaterial.setColumns(10);
 		
 		JLabel labelNome = new JLabel("Nome do Material");
-		labelNome.setLabelFor(textoNome);
+		labelNome.setLabelFor(textoNomeMaterial);
 		labelNome.setHorizontalAlignment(SwingConstants.CENTER);
 		labelNome.setBounds(384, 83, 126, 14);
 		panel.add(labelNome);
 		
-		textoQuantidade = new JTextField();
-		textoQuantidade.setColumns(10);
-		textoQuantidade.setBounds(367, 143, 160, 20);
-		panel.add(textoQuantidade);
+		textoQuantidadeMaterial = new JTextField();
+		textoQuantidadeMaterial.setColumns(10);
+		textoQuantidadeMaterial.setBounds(367, 143, 160, 20);
+		panel.add(textoQuantidadeMaterial);
 		
 		JLabel labelQuantidadeDeMaterial = new JLabel("Quantidade de Material");
-		labelQuantidadeDeMaterial.setLabelFor(textoQuantidade);
+		labelQuantidadeDeMaterial.setLabelFor(textoQuantidadeMaterial);
 		labelQuantidadeDeMaterial.setHorizontalAlignment(SwingConstants.CENTER);
 		labelQuantidadeDeMaterial.setBounds(384, 129, 126, 14);
 		panel.add(labelQuantidadeDeMaterial);
@@ -155,6 +183,12 @@ public class TelaEstoque extends JFrame {
 		JButton botaoComprarMaterial = new JButton("Comprar Material");
 		botaoComprarMaterial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Estoque estoque = new Estoque();
+				
+				String nomeMaterial = textoNomeMaterial.getText();
+				int quantidadeMaterialBD = Integer.parseInt(textoQuantidadeMaterial.getText()) ;
+				
+				estoque.comprarMaterial(nomeMaterial, quantidadeMaterialBD);
 				
 			}
 		});
@@ -169,7 +203,7 @@ public class TelaEstoque extends JFrame {
 		textoMaterialEmEstoque = new JTextField();
 		labelMaterialEmEstoque.setLabelFor(textoMaterialEmEstoque);
 		textoMaterialEmEstoque.setEditable(false);
-		textoMaterialEmEstoque.setBounds(161, 82, 88, 20);
+		textoMaterialEmEstoque.setBounds(152, 82, 97, 20);
 		panel.add(textoMaterialEmEstoque);
 		textoMaterialEmEstoque.setColumns(10);
 		
@@ -182,7 +216,7 @@ public class TelaEstoque extends JFrame {
 		labelDinheiroEmCaixa.setLabelFor(textoSaldoCaixa);
 		textoSaldoCaixa.setEditable(false);
 		textoSaldoCaixa.setColumns(10);
-		textoSaldoCaixa.setBounds(161, 126, 88, 20);
+		textoSaldoCaixa.setBounds(152, 126, 97, 20);
 		panel.add(textoSaldoCaixa);
 		
 		JButton botaoAtualizar = new JButton("Atualizar");
@@ -196,9 +230,9 @@ public class TelaEstoque extends JFrame {
 	                String totalCaixa;
 	                totalCaixa = Double.toString(caixa.consultarTotal());
 	                
-	                textoSaldoCaixa.setText(totalCaixa);
+	                textoSaldoCaixa.setText("R$ "+totalCaixa);
 	                
-	                JOptionPane.showMessageDialog(null, "Saldo Atualizado!");
+	                
 				}
 	            catch (Exception ex) {
 	                System.err.println("Erro geral: "+ex.getMessage());
@@ -216,9 +250,14 @@ public class TelaEstoque extends JFrame {
 				catch (Exception e1) {
 					System.err.println("Erro na listagem de estoque."+e1);
 				}
+				//Confirmação JOptionPane
+				JOptionPane.showMessageDialog(null, "Informações Atualizadas!");
 			}
 		});
-		botaoAtualizar.setBounds(160, 168, 89, 23);
+		botaoAtualizar.setBounds(152, 168, 97, 23);
 		panel.add(botaoAtualizar);
+		
+		
+				
 	}
 }

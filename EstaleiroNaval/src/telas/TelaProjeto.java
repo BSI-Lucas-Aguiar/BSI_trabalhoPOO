@@ -1,13 +1,11 @@
 package telas;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import estaleiroNaval.Funcionario;
 import estaleiroNaval.Projeto;
 import persistencia.FabricaConexao;
 
@@ -22,7 +20,6 @@ import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -30,6 +27,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
+@SuppressWarnings("serial")
 public class TelaProjeto extends JFrame {
 
 	private JPanel contentPane;
@@ -129,8 +127,8 @@ public class TelaProjeto extends JFrame {
 		contentPane.add(textoValorEmbarcacao);
 		textoValorEmbarcacao.setColumns(10);
 		
-		JComboBox comboBoxTipoEmbarcacao = new JComboBox();
-		comboBoxTipoEmbarcacao.setModel(new DefaultComboBoxModel(new String[] {"Lancha"}));
+		JComboBox <Object> comboBoxTipoEmbarcacao = new JComboBox<>();
+		comboBoxTipoEmbarcacao.setModel(new DefaultComboBoxModel<>(new String[] {"Lancha"}));
 		comboBoxTipoEmbarcacao.setBounds(10, 149, 150, 22);
 		contentPane.add(comboBoxTipoEmbarcacao);
 		

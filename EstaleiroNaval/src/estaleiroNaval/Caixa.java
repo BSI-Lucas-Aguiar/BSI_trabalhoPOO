@@ -53,31 +53,6 @@ public class Caixa {
 				}
 			}
 			
-//			JOptionPane.showMessageDialog(null, "."+comparacaoProjeto+". ."+projetoVenda+".");
-
-			
-			
-//			JOptionPane.showMessageDialog(null, comparacaoProjeto+"\n"+vendido);
-			
-//			System.out.println("Antes do while");
-
-//			while(resultadoConsulta.next()) {
-//				System.out.println("Dentro do while");
-//				String comparacao = resultadoConsulta.getString("codigoProjeto");
-//				if(projetoVenda == comparacao) {
-//					System.out.println("Dentro do primeiro if");
-//					if(resultadoConsulta.getInt("vendido") == 0) {
-//						System.out.println("Dentro do segundo if");
-//						caixa = (caixa + resultadoConsulta.getDouble("valorEmbarcacao"));
-//						
-//						venderProjeto.executeUpdate("UPDATE estaleiro_naval.caixa SET totalCaixa = totalCaixa + '"+caixa+"'");
-//						
-//						
-//						JOptionPane.showMessageDialog(null, "O Projeto "+projetoVenda +" foi vendido por: R$"+resultadoSaldo);
-//						JOptionPane.showMessageDialog(null, "teste");
-//					}
-//				}
-//			}
 			resultadoSaldo.close();
 			resultadoConsulta.close();
 						
