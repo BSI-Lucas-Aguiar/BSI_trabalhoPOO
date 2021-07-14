@@ -176,10 +176,13 @@ public class TelaPrincipal extends JFrame {
 		addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                int sair = JOptionPane.showConfirmDialog(contentPane, 
-                        "Tem certeza que deseja encerrar o Sistema?", "Atenção!!!", 
+            	Object[] objeto = {"Sair","Cancelar"};
+                int sair = JOptionPane.showOptionDialog(contentPane, 
+                        "Tem certeza que deseja encerrar o Sistema?", "Atenção!!!",
                         JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE);
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        objeto, objeto[0]);
                 
                 if(sair == JOptionPane.YES_OPTION){
                 	System.out.println("Aplicação Finalizada, obrigado por utilizar!");
