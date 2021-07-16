@@ -7,13 +7,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import estaleiroNaval.Funcionario;
 import estaleiroNaval.Projeto;
 import persistencia.FabricaConexao;
 
 import javax.swing.JButton;
-import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -26,6 +26,8 @@ import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 import java.awt.Font;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class TelaFuncionarios extends JFrame {
@@ -33,6 +35,7 @@ public class TelaFuncionarios extends JFrame {
 	private JPanel contentPane;
 	private JTextField textoNome;
 	private JTextField textoCargo;
+	private JTable tabelaFuncionarios;
 
 	//Iniciar a Tela
 	//********************************************************************************************************
@@ -66,11 +69,6 @@ public class TelaFuncionarios extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JTextArea textAreaFuncionarios = new JTextArea();
-		textAreaFuncionarios.setEditable(false);
-		textAreaFuncionarios.setBounds(10, 99, 243, 351);
-		panel.add(textAreaFuncionarios);
-		
 		//Combo Box Lista de Projetos
 		//********************************************************************************************************
 		JComboBox<Object> comboBoxProjetos = new JComboBox<>();
@@ -82,6 +80,17 @@ public class TelaFuncionarios extends JFrame {
 			comboBoxProjetos.addItem(p.getCodigoProjeto());
 		}
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 99, 243, 351);
+		panel.add(scrollPane);
+		
+		tabelaFuncionarios = new JTable();
+		scrollPane.setViewportView(tabelaFuncionarios);
+		DefaultTableModel modelo = new DefaultTableModel();
+		modelo.addColumn("Nome");
+    	modelo.addColumn("Cargo");
+    	modelo.addColumn("Projeto Atual");
+    	tabelaFuncionarios.setModel(modelo);
 		
 		//Função de Listar os Funcionários
 		//********************************************************************************************************
@@ -98,14 +107,14 @@ public class TelaFuncionarios extends JFrame {
 	                //Pega os funcionários do BD e forma uma arraylist
 	                ArrayList<Funcionario> listaFuncionario = funcionario.listarFuncionario();
 
-	                if(listaFuncionario != null) {
-	                	textAreaFuncionarios.setText("");
-	                    for(Funcionario f: listaFuncionario) {
-	                    	textAreaFuncionarios.setText(textAreaFuncionarios.getText()+ f.getNome()+" | "+ f.getCargo()+" | "+f.getProjetoAtual()+"\n");
-
-	                    }
-	                }
 	                
+	                modelo.setRowCount(0);
+	                if(listaFuncionario != null) {
+	                	for(Funcionario f: listaFuncionario) {
+	                		modelo.addRow(new String[] {f.getNome(), f.getCargo(), f.getProjetoAtual()} );
+	                	}
+	                }
+
 	                JOptionPane.showMessageDialog(null, "Lista de Funcionários Atualizada!");
 	                conexao.close();
 	                System.out.println("Conexão para listar funcionários finalizada!");
@@ -225,6 +234,8 @@ public class TelaFuncionarios extends JFrame {
 		labelFuncionarios.setHorizontalAlignment(SwingConstants.CENTER);
 		labelFuncionarios.setBounds(0, 11, 684, 32);
 		panel.add(labelFuncionarios);
+		
+		
 		
 	}
 }

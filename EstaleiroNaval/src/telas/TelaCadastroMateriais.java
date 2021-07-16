@@ -6,12 +6,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import estaleiroNaval.Compra;
 import persistencia.FabricaConexao;
 
 import java.awt.Toolkit;
-import javax.swing.JTextArea;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class TelaCadastroMateriais extends JFrame {
@@ -31,6 +33,7 @@ public class TelaCadastroMateriais extends JFrame {
 	private JPanel contentPane;
 	private JTextField textoNomeMaterial;
 	private JTextField textoPrecoMaterial;
+	private JTable tabelaMateriais;
 
 	//Iniciar a Tela
 	//********************************************************************************************************
@@ -63,9 +66,16 @@ public class TelaCadastroMateriais extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JTextArea textAreaCompra = new JTextArea();
-		textAreaCompra.setBounds(10, 235, 554, 105);
-		panel.add(textAreaCompra);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 235, 554, 115);
+		panel.add(scrollPane);
+		
+		tabelaMateriais = new JTable();
+		scrollPane.setViewportView(tabelaMateriais);
+		DefaultTableModel modelo = new DefaultTableModel();
+    	modelo.addColumn("Materiais");
+    	modelo.addColumn("Preço");
+    	tabelaMateriais.setModel(modelo);
 		
 		//Botão Listar Materiais
 		//********************************************************************************************************
@@ -82,12 +92,11 @@ public class TelaCadastroMateriais extends JFrame {
 	                //Pega os materiais e forma um arraylist
 	                ArrayList<Compra> listaCompra = compra.listarCompra();
 
+	                modelo.setRowCount(0);
 	                if(listaCompra != null) {
-	                	textAreaCompra.setText("");
-	                    for(Compra c: listaCompra) {
-	                    	textAreaCompra.setText(textAreaCompra.getText()+ c.getNomeMaterial()+" | "+ c.getPrecoMaterial()+"\n");
-
-	                    }
+	                	for(Compra c: listaCompra) {
+	                		modelo.addRow(new String[] {c.getNomeMaterial(), c.getPrecoMaterial()} );
+	                	}
 	                }
 	                
 	                JOptionPane.showMessageDialog(null, "Lista de Materiais Atualizada!");
@@ -197,5 +206,7 @@ public class TelaCadastroMateriais extends JFrame {
 		});
 		labelAlterarMaterial.setBounds(419, 161, 145, 23);
 		panel.add(labelAlterarMaterial);
+		
+		
 	}
 }

@@ -110,6 +110,7 @@ public class TelaProjeto extends JFrame {
 		contentPane.add(botaoListarProjetos);
 		
 		textoCodigoProjeto = new JTextField();
+		textoCodigoProjeto.setToolTipText("Esse campo n\u00E3o pode ser alterado!");
 		textoCodigoProjeto.setBounds(10, 92, 150, 20);
 		contentPane.add(textoCodigoProjeto);
 		textoCodigoProjeto.setColumns(10);
@@ -140,7 +141,7 @@ public class TelaProjeto extends JFrame {
 		JLabel labelCodigoProjeto = new JLabel("C\u00F3digo do Projeto");
 		labelCodigoProjeto.setLabelFor(textoCodigoProjeto);
 		labelCodigoProjeto.setHorizontalAlignment(SwingConstants.CENTER);
-		labelCodigoProjeto.setBounds(10, 67, 150, 14);
+		labelCodigoProjeto.setBounds(10, 56, 150, 14);
 		contentPane.add(labelCodigoProjeto);
 		
 		JLabel labelQuantidadeMaterial = new JLabel("Quantidade de Material");
@@ -220,6 +221,11 @@ public class TelaProjeto extends JFrame {
 		});
 		botaoDeletarProjeto.setBounds(415, 174, 150, 23);
 		contentPane.add(botaoDeletarProjeto);
+		
+		JLabel labelNaoPode = new JLabel("(N\u00E3o pode ser alterado!)");
+		labelNaoPode.setHorizontalAlignment(SwingConstants.CENTER);
+		labelNaoPode.setBounds(10, 67, 150, 20);
+		contentPane.add(labelNaoPode);
 		
 		
 	}
