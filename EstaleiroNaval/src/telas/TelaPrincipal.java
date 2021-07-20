@@ -123,6 +123,18 @@ public class TelaPrincipal extends JFrame {
 		});
 		menuCaixa.add(menuCaixaTotalCaixa);
 		
+		JMenu menuRelatorios = new JMenu("Relat\u00F3rios");
+		menuBar.add(menuRelatorios);
+		
+		JMenuItem menuRelatorioProducao = new JMenuItem("Relat\u00F3rio de Produ\u00E7\u00E3o");
+		menuRelatorioProducao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaRelatorio telaRelatorio = new TelaRelatorio();
+				telaRelatorio.setVisible(true);
+			}
+		});
+		menuRelatorios.add(menuRelatorioProducao);
+		
 		//Janela de Conteúdo
 		//********************************************************************************************************
 		contentPane = new JPanel();

@@ -51,6 +51,7 @@ public class Estoque {
 			System.out.println("Conexão com o BD reatirar material!");
 						
 			stmt.executeUpdate("UPDATE estaleiro_naval.lancha SET materialUtilizado = materialUtilizado + '"+qtdMaterial+"'WHERE codigoProjeto = '"+projeto+"';");
+			stmt.executeUpdate("UPDATE estaleiro_naval.estoque SET estoqueMaterial = estoqueMaterial - '"+qtdMaterial+"'WHERE idEstoque = 1;");
 			
 			conexao.close();
 			System.out.println("Conexão para retirar material finalizada!");

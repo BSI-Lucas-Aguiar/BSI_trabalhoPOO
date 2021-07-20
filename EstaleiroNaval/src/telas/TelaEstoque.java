@@ -92,7 +92,7 @@ public class TelaEstoque extends JFrame {
 			comboBoxProjetos.addItem(p.getCodigoProjeto());
 		}
 		
-		//Botão Retirar material
+		//Botão Utilizar material
 		//********************************************************************************************************
 		JButton botaoUtilizarMaterial = new JButton("Utilizar Material");
 		botaoUtilizarMaterial.addActionListener(new ActionListener() {
